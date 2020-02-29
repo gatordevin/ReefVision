@@ -79,6 +79,91 @@ function createPlayer1(width, height, streamControl) {
 
 
 
+
+
+
+function createPlayer3(width, height, streamControl) {
+  var player = new Player({
+    useWorker: true,
+    workerFile: "broadway/Decoder.js",
+    reuseMemory: true,
+    webgl: "auto",
+    size: {
+      width: width,
+      height: height,
+    }
+  });
+
+  var frameCount = 0
+  player.onPictureDecoded = function(data) {
+    if (frameCount == 0) {
+      console.log("First frame decoded");
+    }
+    frameCount++;
+  };
+
+  var container = document.getElementById("container3");
+
+  var cropDiv = document.createElement("div");
+  
+  
+  cropDiv.appendChild(player.canvas);
+  container.appendChild(cropDiv);
+
+  return player
+}
+
+function createPlayer4(width, height, streamControl) {
+  var player = new Player({
+    useWorker: true,
+    workerFile: "broadway/Decoder.js",
+    reuseMemory: true,
+    webgl: "auto",
+    size: {
+      width: 1000,
+      height: height,
+    }
+  });
+
+  var frameCount = 0
+  player.onPictureDecoded = function(data) {
+    if (frameCount == 0) {
+      console.log("First frame decoded");
+    }
+    frameCount++;
+  };
+
+  var container = document.getElementById("container4");
+  
+  var cropDiv = document.createElement("div");
+  cropDiv.style.overflow = "hidden";
+  // cropDiv.style.position = "absolute";
+  // cropDiv.style.width = width + "px";
+  // cropDiv.style.height = height + "px";
+  cropDiv.appendChild(player.canvas);
+  container.appendChild(cropDiv);
+  
+
+  var canvas = document.createElement("canvas");
+  canvas.id = "overlay"
+  canvas.style.position = "absolute";
+  canvas.width = width;
+  canvas.height = height;
+
+  container.appendChild(canvas);
+
+
+
+  
+
+  return player
+}
+
+
+
+
+
+
 window.onload = function() {
   protobuf.load("messages.proto", function(err, root) {
     if (err)
@@ -118,20 +203,25 @@ window.onload = function() {
           if (player == null) {
             console.log('Starting...')
             player = createPlayer(start.width, start.height, streamControl);
+            player3 = createPlayer3(start.width, start.height, streamControl);
+
             console.log("Started: " + start.width + "x" + start.height);
           }
           if (player1 == null) {
             console.log('1Starting...')
             player1 = createPlayer1(start.width, start.height, streamControl);
+            player4 = createPlayer4(start.width, start.height, streamControl);
             console.log("1Started: " + start.width + "x" + start.height);
           }
 
           break;
         case 'video':
           player.decode(clientBound.video.data);
+          player3.decode(clientBound.video.data);
           break;
         case 'usb':
             player1.decode(clientBound.usb.data);
+            player4.decode(clientBound.usb.data);
             break;
         case 'overlay':
           var canvas = document.getElementById("overlay");

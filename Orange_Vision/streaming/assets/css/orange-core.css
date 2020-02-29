@@ -5476,8 +5476,18 @@ textarea.textarea.is-button+.textarea-button button {
 }
 
 .tabs-wrapper .navtab-content.is-active {
-    display: block
+    display: block;
 }
+
+#t3 canvas {
+    width: 560px !important;
+    float: left;
+    /* background: red;
+    z-index:1000
+    position:relative; */
+    
+}
+
 
 .form-switch {
     position: relative;
