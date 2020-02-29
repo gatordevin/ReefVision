@@ -75,7 +75,7 @@ class Camera:
     def ai_stream(self):
             while True:
                 if self.render_overlay:
-                    tensor = np.frombuffer(bytes(AI),dtype=np.uint8)
+                    tensor = np.frombuffer(bytes(self.AI),dtype=np.uint8)
                     layout = None
                     command = None
                     self.render_overlay(tensor, layout, command)
