@@ -75,6 +75,8 @@ def _file_content_type(path):
         return 'text/css; charset=utf-8'
     elif path.endswith('.png'):
         return'image/png'
+    elif path.endswith('.svg'):
+        return 'image/svg+xml; charset=utf-8'
     elif path.endswith('.jpg') or path.endswith('.jpeg'):
         return'image/jpeg'
     elif path.endswith('.wasm'):

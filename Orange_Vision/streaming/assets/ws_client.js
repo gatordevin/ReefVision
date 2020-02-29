@@ -5,7 +5,7 @@ function createPlayer(width, height, streamControl) {
     reuseMemory: true,
     webgl: "auto",
     size: {
-      width: width,
+      width: 1000,
       height: height,
     }
   });
@@ -19,22 +19,26 @@ function createPlayer(width, height, streamControl) {
   };
 
   var container = document.getElementById("container");
-
+  var container3 = document.getElementById("container3");
   
   var cropDiv = document.createElement("div");
   cropDiv.style.overflow = "hidden";
-  cropDiv.style.position = "absolute";
-  cropDiv.style.width = width + "px";
-  cropDiv.style.height = height + "px";
+  // cropDiv.style.position = "absolute";
+  // cropDiv.style.width = width + "px";
+  // cropDiv.style.height = height + "px";
   cropDiv.appendChild(player.canvas);
   container.appendChild(cropDiv);
+  
 
   var canvas = document.createElement("canvas");
   canvas.id = "overlay"
   canvas.style.position = "absolute";
   canvas.width = width;
   canvas.height = height;
+
   container.appendChild(canvas);
+
+
 
   
 
@@ -65,7 +69,7 @@ function createPlayer1(width, height, streamControl) {
   var container = document.getElementById("container1");
 
   var cropDiv = document.createElement("div");
-  cropDiv.style.paddingLeft = "640px"
+  
   
   cropDiv.appendChild(player.canvas);
   container.appendChild(cropDiv);
