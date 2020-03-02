@@ -17,6 +17,12 @@ setup(
         'protobuf>=3.0.0',
         'edgetpu',
     ],
+    scripts = [
+        'scripts/kill.sh',
+        'scripts/autoboot.sh',
+        'scripts/wifi_down.sh',
+        'scripts/wifi_up.sh'
+    ]
     entry_points = {
         'console_scripts': ['orange_classify=Orange_Vision.classify:main',
                             'orange_classify_server=Orange_Vision.classify_server:main',

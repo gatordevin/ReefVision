@@ -35,7 +35,8 @@ class Camera:
         CSICam = camMan.newCam(0)
         #
         self.H264 = CSICam.addPipeline(GStreamerPipelines.H264,(640,480),30,"h264sink")
-        self.AI = CSICam.addPipeline(GStreamerPipelines.RGB,(300, 300),30,"AI")
+        #  re-enable later
+        #self.AI = CSICam.addPipeline(GStreamerPipelines.RGB,(300, 300),30,"AI")
 
         CSICam.startPipeline() 
         if os.path.exists('/dev/video1'):
@@ -65,9 +66,9 @@ class Camera:
             self.SB.addListener(objFunc)
 
 
-
-        self._thread = threading.Thread(target=self.ai_stream)
-        self._thread.start()
+        ## re-enable later
+        # self._thread = threading.Thread(target=self.ai_stream)
+        # self._thread.start()
 
 
         
