@@ -7,3 +7,6 @@ FRC Orange Vision package
 `sudo pip3 install Orange_Vision`
  
 sudo for running scripts
+
+run server
+`orange_detect_server`
