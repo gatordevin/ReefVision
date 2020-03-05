@@ -21,7 +21,7 @@ EOT
 sudo mv orange.service /lib/systemd/system/orange.service
 
 
-echo "python3 /home/mendel/Orange_Vision/Orange_Vision/detect_server.py" >> orange_service.sh
+echo "orange_detect_server" >> orange_service.sh
 sudo chmod u+x orange_service.sh
 sudo mv orange_service.sh /usr/bin
 sudo systemctl enable orange.service
