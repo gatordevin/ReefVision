@@ -326,8 +326,7 @@ iframe,
 hr,
 h1,
 h2,
-h3,
-h4,
+h3,mainSection
 h5,
 h6 {
     margin: 0;
@@ -9887,11 +9886,16 @@ input[type=range]::-ms-track {
 
 
 canvas { 
-    width: 1120px !important;
+    width: 75vw !important;
 
 }
 #overlay {
     position: absolute; 
     top:40px;
     z-index: 2;
+}
+
+.mainSection {
+    width: 93vw;
+    padding-left: 4vw;
 }
