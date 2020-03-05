@@ -31,4 +31,10 @@ https://pypi.org/project/Orange_Vision/
 `wifi_up.sh`
 
 ### autoboot
-``autoboot.sh`
+`autoboot.sh`
+
+
+### stop autoboot and kill server
+`kill.sh`
+
+
