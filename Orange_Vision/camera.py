@@ -14,12 +14,8 @@
 
 import os
 import threading
-import numpy as np
 from time import sleep
-import os
-import threading
-from time import sleep
-from CameraManager.TPUCameraManager import CameraManager, GStreamerPipelines
+from .CameraManager.TPUCameraManager import CameraManager, GStreamerPipelines
 import numpy as np
 
 class Camera:

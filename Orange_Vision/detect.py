@@ -34,8 +34,8 @@ import time
 
 from edgetpu.detection.engine import DetectionEngine
 
-import svg
-import utils
+from . import svg
+from . import utils
 
 
 CSS_STYLES = str(svg.CssStyle({'.back': svg.Style(fill='black',
