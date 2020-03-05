@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='Orange_Vision',
-    version="0.0.2",
+    version="0.0.3",
     description="FRC Orange Vision API",
     long_description='API to run inference on image data coming from the camera.',
     author='Danny Dasilva',
@@ -22,7 +22,7 @@ setup(
         'scripts/autoboot.sh',
         'scripts/wifi_down.sh',
         'scripts/wifi_up.sh'
-    ]
+    ],
     entry_points = {
         'console_scripts': ['orange_classify=Orange_Vision.classify:main',
                             'orange_classify_server=Orange_Vision.classify_server:main',
