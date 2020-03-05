@@ -9886,7 +9886,7 @@ input[type=range]::-ms-track {
 
 
 canvas { 
-    width: 75vw !important;
+    width: 100%  !important;
 
 }
 #overlay {
@@ -9896,6 +9896,6 @@ canvas {
 }
 
 .mainSection {
-    width: 93vw;
-    padding-left: 4vw;
+    width: 85vw;
+    padding-left: 5vw;
 }
