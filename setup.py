@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='Orange_Vision',
-    version="0.0.3",
+    version="0.0.5",
     description="FRC Orange Vision API",
     long_description='API to run inference on image data coming from the camera.',
     author='Danny Dasilva',
