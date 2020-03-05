@@ -6,10 +6,10 @@ FRC Orange Vision package
 
 `sudo pip3 install Orange_Vision`
  
-sudo is for running scripts
+> sudo is for running scripts
 
 
-> The scripts below are part of the pip package so you can just run them in terminal no need to git clone or anything just pip install
+*The scripts below are part of the pip package so you can just run them in terminal no need to git clone or anything just pip install*
 
 
 
