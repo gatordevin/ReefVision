@@ -259,7 +259,7 @@ class StreamingServer:
         self.close()
 
     def __init__(self, camera, bitrate=1000000, mdns_name=None,
-                 tcp_port=4665, web_port=4664, annexb_port=4666):
+                 tcp_port=4665, web_port=5801, annexb_port=4666):
         self._bitrate = bitrate
         self._camera = camera
         self._clients = AtomicSet()

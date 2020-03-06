@@ -5479,15 +5479,6 @@ textarea.textarea.is-button+.textarea-button button {
     display: block;
 }
 
-#t3 canvas {
-    width: 560px !important;
-    float: left;
-    /* background: red;
-    z-index:1000
-    position:relative; */
-    
-}
-
 
 .form-switch {
     position: relative;

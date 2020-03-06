@@ -30,7 +30,6 @@ class Camera:
         self.set_ai = set_ai
         CSICam = camMan.newCam(0)
         
-        print(set_ai)
         self.H264 = CSICam.addPipeline(GStreamerPipelines.H264,(640,480),30,"h264sink")
         #  re-enable later
         if set_ai:

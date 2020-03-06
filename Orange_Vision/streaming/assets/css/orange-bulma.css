@@ -8032,7 +8032,8 @@ label.panel-block:hover {
     flex-grow: 1;
     -ms-flex-negative: 1;
     flex-shrink: 1;
-    padding: .75rem
+    /* #fix */
+    /* padding: .75rem */
 }
 
 .columns.is-mobile>.column.is-narrow {
@@ -8138,7 +8139,7 @@ label.panel-block:hover {
 
 .columns.is-mobile>.column.is-1 {
     -ms-flex: none;
-    flex: none;
+    flex: none;     </div>
     width: 8.33333%
 }
 
@@ -9898,4 +9899,14 @@ canvas {
 .mainSection {
     width: 75vw;
     padding-left: 10vw;
+}
+
+
+#t3 canvas {
+    width: 100% !important;
+    float: left;
+    /* background: red;
+    z-index:1000
+    position:relative; */
+    
 }

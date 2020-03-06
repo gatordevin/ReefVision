@@ -22,6 +22,12 @@ https://pypi.org/project/Orange_Vision/
 `orange_detect_server`
 
 
+
+### run with inference
+
+`orange_detect_server --enable_ai`
+
+
 ### enable .local
 
 `wifi_down.sh`
