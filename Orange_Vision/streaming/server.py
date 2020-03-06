@@ -699,7 +699,11 @@ class WsProtoClient(ProtoClient):
             self._logger.info('Upgraded to WebSocket')
             return False
         if request.command == 'POST':
-
+            if request.path == '/yeet':
+                content = b'sick'
+                content_type = 'text/plain; charset=utf-8'
+                self._queue_message(_http_ok(content, content_type))
+                self._queue_message(None)
             if request.path == '/disconnect':
                 path = request.headers['Authority']
                 print(path, "disconnect")

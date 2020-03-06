@@ -84,7 +84,7 @@
   </div>
 
 
-
+  <button onclick=test()  aria-label="close" class="button">test</button>
 
 
            
@@ -99,7 +99,18 @@
 
 var connections = { "Dasilva-Wifi": "WPA2", "ATTUMTu3Ys_2.4": "WPA2", "SKYNETgear-2.4": "WPA2", Spider: "WPA2", xfinitywifi: "--", "33333-Wifi": "WPA2", "2222-Wifi": "WPA2","qweewqe-Wifi": "WPA2","eeeeee-Wifi": "WPA2",}
 
+function test() { 
+  $.ajax({
+            type: 'POST',
+            url: "/yeet",
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify({ "hello" : "test"}),
+            success:function(data) {
+              console.log(data, "success")
+            }
 
+        });
+}
 function reloadConnections() { 
   console.log("reload connections")
   $.ajax({
@@ -107,6 +118,10 @@ function reloadConnections() {
             url: "/getConnections",
             contentType: 'application/json;charset=UTF-8',
             data: JSON.stringify({ "hello" : "test"}),
+            success:function(data) {
+              console.log(data, "success")
+            }
+
         });
 
   $.getJSON('/json/connections.json', function (data) {
