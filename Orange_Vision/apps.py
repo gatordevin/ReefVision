@@ -39,8 +39,8 @@ def run_server(add_render_gen_args, render_gen):
 
     gen = render_gen(args)
     #add args for creating model
-    
-    camera = Camera(next(gen))
+    print(args)
+    camera = Camera(next(gen), None)
     
     assert camera is not None
 

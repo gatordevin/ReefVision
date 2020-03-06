@@ -33,9 +33,11 @@ import itertools
 import time
 
 from edgetpu.detection.engine import DetectionEngine
+import os
+dirname, filename = os.path.split(os.path.abspath(__file__))
 
-from . import svg
-from . import utils
+from Orange_Vision import svg
+from Orange_Vision import utils
 
 
 CSS_STYLES = str(svg.CssStyle({'.back': svg.Style(fill='black',
@@ -185,9 +187,9 @@ def render_gen(args):
 
 def add_render_gen_args(parser):
     parser.add_argument('--model', required=False,
-                        help='.tflite model path', default='/home/mendel/demo_files/mobilenet_v2_edgetpu_red.tflite')
+                        help='.tflite model path', default=f'{dirname}/models/mobilenet_v2_edgetpu_red.tflite')
     parser.add_argument('--labels', required=False,
-                        help='label file path', default='/home/mendel/demo_files/imagenet_labels.txt')
+                        help='label file path', default=f'{dirname}/models/field_labels.txt')
     parser.add_argument('--top_k', type=int, default=50,
                         help='Max number of objects to detect')
     parser.add_argument('--threshold', type=float, default=0.1,

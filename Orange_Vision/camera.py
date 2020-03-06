@@ -19,7 +19,7 @@ from .CameraManager.TPUCameraManager import CameraManager, GStreamerPipelines
 import numpy as np
 
 class Camera:
-    def __init__(self, model_res):
+    def __init__(self, model_res, set_ai):
         #def __init__(self, render_size, inference_size, loop):
         # self._layout = gstreamer.make_layout(inference_size, render_size)
         # self._loop = loop
@@ -27,12 +27,12 @@ class Camera:
         self._thread = None
         self.render_overlay = None
         camMan = CameraManager() #Creates new camera manager object
-
+        print(model_res)
         CSICam = camMan.newCam(0)
         #
         self.H264 = CSICam.addPipeline(GStreamerPipelines.H264,(640,480),30,"h264sink")
         #  re-enable later
-        #self.AI = CSICam.addPipeline(GStreamerPipelines.RGB,(300, 300),30,"AI")
+        # self.AI = CSICam.addPipeline(GStreamerPipelines.RGB, model_res,30,"AI")
 
         CSICam.startPipeline() 
         if os.path.exists('/dev/video1'):
