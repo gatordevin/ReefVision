@@ -722,7 +722,7 @@ class WsProtoClient(ProtoClient):
                 wifi_list = search_wifi()
                 data = json.dumps(wifi_list).encode('utf-8')
                 # content = bytes(data)
-                send_post_data(data)
+                self.send_post_data(data)
                 
 
                 
