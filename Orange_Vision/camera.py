@@ -27,12 +27,15 @@ class Camera:
         self._thread = None
         self.render_overlay = None
         camMan = CameraManager() #Creates new camera manager object
-        print(model_res)
+        self.set_ai = set_ai
         CSICam = camMan.newCam(0)
-        #
+        
+        print(set_ai)
         self.H264 = CSICam.addPipeline(GStreamerPipelines.H264,(640,480),30,"h264sink")
         #  re-enable later
-        # self.AI = CSICam.addPipeline(GStreamerPipelines.RGB, model_res,30,"AI")
+        if set_ai:
+            
+            self.AI = CSICam.addPipeline(GStreamerPipelines.RGB, model_res,30,"AI")
 
         CSICam.startPipeline() 
         if os.path.exists('/dev/video1'):
@@ -63,8 +66,10 @@ class Camera:
 
 
         ## re-enable later
-        # self._thread = threading.Thread(target=self.ai_stream)
-        # self._thread.start()
+        if self.set_ai:
+
+            self._thread = threading.Thread(target=self.ai_stream)
+            self._thread.start()
 
 
         

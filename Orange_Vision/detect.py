@@ -204,3 +204,5 @@ def add_render_gen_args(parser):
                         help='Bounding box display color'),
     parser.add_argument('--print', default=False, action='store_true',
                         help='Print inference results')
+    parser.add_argument('--enable_ai', default=False, action='store_true',
+                        help='Turn on Ai inference')
