@@ -18,7 +18,7 @@ from .helpers import  check_outdated
 from enum import Enum
 from http.server import BaseHTTPRequestHandler
 from itertools import cycle
-
+import json
 from .proto import messages_pb2 as pb2
 import Orange_Vision
 
@@ -716,7 +716,15 @@ class WsProtoClient(ProtoClient):
 
             if request.path == '/getConnections':
                 wifi_list = search_wifi()
-                write_json('connections', wifi_list)
+                # write_json('connections', wifi_list)
+                print(wifi_list)
+                s = json.dumps(wifi_list).encode('utf-8')
+                print(s)
+                content = bytes(s)
+                content_type = 'text/plain; charset=utf-8'
+                self._queue_message(_http_ok(content, content_type))
+                self._queue_message(None)
+
                 
             return True
 

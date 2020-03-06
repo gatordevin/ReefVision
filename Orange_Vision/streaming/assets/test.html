@@ -119,15 +119,12 @@ function reloadConnections() {
             contentType: 'application/json;charset=UTF-8',
             data: JSON.stringify({ "hello" : "test"}),
             success:function(data) {
-              console.log(data, "success")
+              var fill_data = JSON.parse(data);
+              console.log(fill_data)
+              fillConnections(fill_data)
             }
 
         });
-
-  $.getJSON('/json/connections.json', function (data) {
-    fillConnections(data)
-  });
- 
 
 }
 
