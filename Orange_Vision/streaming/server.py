@@ -687,6 +687,10 @@ class WsProtoClient(ProtoClient):
                 packet.append(message.SerializeToString())
             buf = packet.serialize()
         self._socket.sendall(buf)
+    def send_post_data(self, content):
+        content_type = 'text/plain; charset=utf-8'
+        self._queue_message(_http_ok(content, content_type))
+        self._queue_message(None)
 
     def _process_web_request(self):
         request = _read_http_request(self._socket)
@@ -716,14 +720,10 @@ class WsProtoClient(ProtoClient):
 
             if request.path == '/getConnections':
                 wifi_list = search_wifi()
-                # write_json('connections', wifi_list)
-                print(wifi_list)
-                s = json.dumps(wifi_list).encode('utf-8')
-                print(s)
-                content = bytes(s)
-                content_type = 'text/plain; charset=utf-8'
-                self._queue_message(_http_ok(content, content_type))
-                self._queue_message(None)
+                data = json.dumps(wifi_list).encode('utf-8')
+                # content = bytes(data)
+                send_post_data(data)
+                
 
                 
             return True
