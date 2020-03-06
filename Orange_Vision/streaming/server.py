@@ -14,12 +14,18 @@ import threading
 import time
 from .helpers.wifi import search_wifi, disconnect, connect_wifi
 from .helpers.read_and_write import write_json
-
+from .helpers import  check_outdated
 from enum import Enum
 from http.server import BaseHTTPRequestHandler
 from itertools import cycle
 
 from .proto import messages_pb2 as pb2
+import Orange_Vision
+
+
+is_outdated, latest_version = check_outdated('Orange_Vision', Orange_Vision.__version__)
+print(is_outdated, latest_version)
+
 
 logger = logging.getLogger(__name__)
 

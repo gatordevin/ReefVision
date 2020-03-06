@@ -1,8 +1,21 @@
 from setuptools import setup, find_packages
 
+import re
+
+import os
+package = 'Orange_Vision'
+
+
+init_path = os.path.join(os.path.dirname(__file__),
+                         package,
+                         '__init__.py')
+with open(init_path) as f:
+    contents = f.read()
+__version__ = re.search(r"__version__ = '([.\d]+)'", contents).group(1)
+
 setup(
-    name='Orange_Vision',
-    version="0.0.5",
+    name=package,
+    version=__version__,
     description="FRC Orange Vision API",
     long_description='API to run inference on image data coming from the camera.',
     author='Danny Dasilva',
@@ -16,6 +29,8 @@ setup(
         'pygobject>=3.22.0',
         'protobuf>=3.0.0',
         'edgetpu',
+        'littleutils',
+        'requests'
     ],
     scripts = [
         'scripts/kill.sh',
