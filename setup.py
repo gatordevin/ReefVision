@@ -13,9 +13,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 init_path = os.path.join(os.path.dirname(__file__),
                          package,
                          '__init__.py')
-print(init_path)
 with open(init_path) as f:
-    
     contents = f.read()
 __version__ = re.search(r"__version__ = '([.\d]+)'", contents).group(1)
 
@@ -53,4 +51,3 @@ setup(
     },
     python_requires='>=3.5.3',
 )
->>>>>>> effd3a0d419804cb341cdbcfb2bd02dc188943e8

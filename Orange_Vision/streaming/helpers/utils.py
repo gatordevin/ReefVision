@@ -7,7 +7,7 @@ from warnings import warn
 import requests
 from littleutils import retry
 
-from mywarnings import OutdatedCacheFailedWarning
+from .warnings import OutdatedCacheFailedWarning
 
 
 def warn_with_ignore(message, *args, **kwargs):
