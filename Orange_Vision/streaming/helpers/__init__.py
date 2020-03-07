@@ -33,7 +33,6 @@ def check_outdated(package, version):
     #         latest, cache_dt = json.loads(content)
     #         if not utils.cache_is_valid(cache_dt):
     #             latest = None
-    latest = None
     def get_latest():
         url = 'https://pypi.python.org/pypi/%s/json' % package
         print(url)

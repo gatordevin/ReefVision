@@ -92,7 +92,7 @@ class Camera:
     def stop_recording(self):
         print("called close")
         # self.camMan.closeAll()
-        self._thread.join()
+        # self._thread.join()
 
     def make_pipeline(self, fmt, profile, inline_headers, bitrate, intra_period):
         raise NotImplemented
