@@ -21,8 +21,7 @@ from itertools import cycle
 import json
 from .proto import messages_pb2 as pb2
 import Orange_Vision
-
-
+from urllib import request as urllib
 # is_outdated, latest_version = check_outdated('Orange_Vision', Orange_Vision.__version__)
 # print(is_outdated, latest_version)
 
@@ -690,7 +689,9 @@ class WsProtoClient(ProtoClient):
                 packet.append(message.SerializeToString())
             buf = packet.serialize()
         self._socket.sendall(buf)
-    def send_post_data(self, content):
+    def send_post_data(self, data):
+        content = json.dumps(data).encode('utf-8')
+
         content_type = 'text/plain; charset=utf-8'
         self._queue_message(_http_ok(content, content_type))
         self._queue_message(None)
@@ -706,11 +707,26 @@ class WsProtoClient(ProtoClient):
             self._logger.info('Upgraded to WebSocket')
             return False
         if request.command == 'POST':
-            if request.path == '/yeet':
-                content = b'sick'
-                content_type = 'text/plain; charset=utf-8'
-                self._queue_message(_http_ok(content, content_type))
-                self._queue_message(None)
+            if request.path == '/checkUpdate':
+
+                try:
+                    url = "https://www.google.com"
+                    urllib.urlopen(url)
+                    status = "Connected"
+                except:
+                    status = "Not connected"
+                print(status, "status")
+                if status == "Connected":
+                    is_outdated, latest_version = check_outdated('Orange_Vision', Orange_Vision.__version__)
+                    data = {"outdated": is_outdated, "latest_version": latest_version}
+                    self.send_post_data(data)
+                
+                else:
+                    data = "False"
+                    self.send_post_data(data)
+
+
+                
             if request.path == '/disconnect':
                 path = request.headers['Authority']
                 print(path, "disconnect")
@@ -723,9 +739,8 @@ class WsProtoClient(ProtoClient):
 
             if request.path == '/getConnections':
                 wifi_list = search_wifi()
-                data = json.dumps(wifi_list).encode('utf-8')
-                # content = bytes(data)
-                self.send_post_data(data)
+                
+                self.send_post_data(wifi_list)
                 
             return True
 

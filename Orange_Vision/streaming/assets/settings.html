@@ -137,14 +137,22 @@
                                 <img src="assets/img/illustrations/profile.svg" alt="">
                                 <h3>A new Version is available</h3>
                                 <p>Guest users don't have accounts. Please login or register to view your account.</p>
-                                <div class="button-wrap notification">
-                                    <a href="#" class="button big-button primary-button rounded raised">Log In</a>
+                                <div class="button-wrap notifications">
+                                    <a href="#" onclick=checkUpdate() class="button big-button notifications-button rounded raised">
+                                      <i class="fas fa-cloud-download-alt"></i> 
+                                      &nbsp;
+                                      Check for update</a>
                                     <span class="badge">!</span>
                                 </div>
 
 
-                                <div class="button-wrap notification">
-                                  <a href="#" class="button big-button primary-button rounded raised">Log In</a>
+                                <div class="button-wrap notifications">
+                                  <a href="#" class="button big-button notifications-alert-button rounded raised">
+                                    <i class="fas fa-download"></i> 
+                                      &nbsp;
+                                      Update Available!</a>
+
+                                  
                                   <span class="badge">!</span>
                               </div>
 
@@ -263,7 +271,7 @@
           </form>
     </div>
   </div>
-  </div>
+  
 
 
 
@@ -288,7 +296,82 @@
           </form>
     </div>
   </div>
+ 
+
+
+  <div id="noWifiModal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <form class="box" onsubmit="event.preventDefault(); tempFunct();">
+            <div class="field">
+              <label for="" class="label">Disconnect Wifi</label>
+              <div class="control has-icons-left">
+              <p>Are you sure you want to Disconnect?</p>
+                
+              </div>
+            </div>
+            <div class="field">
+              
+              <button onclick=closeDisconnectModal()  aria-label="close" class="button">Cancel</button>
+           
+              <button class="button is-danger"> Yes</button>
+
+            </div>
+          </form>
+    </div>
   </div>
+
+
+
+
+  <div id="updateUnavailableModal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <form class="box" onsubmit="event.preventDefault(); tempFunct();">
+            <div class="field">
+              <label for="" class="label">Disconnect Wifi</label>
+              <div class="control has-icons-left">
+              <p>Are you sure you want to Disconnect?</p>
+                
+              </div>
+            </div>
+            <div class="field">
+              
+              <button onclick=closeDisconnectModal()  aria-label="close" class="button">Cancel</button>
+           
+              <button class="button is-danger"> Yes</button>
+
+            </div>
+          </form>
+    </div>
+  </div>
+
+
+
+
+
+  <div id="updateAvailableModal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <form class="box" onsubmit="event.preventDefault(); tempFunct();">
+            <div class="field">
+              <label for="" class="label">Disconnect Wifi</label>
+              <div class="control has-icons-left">
+              <p>Are you sure you want to Disconnect?</p>
+                
+              </div>
+            </div>
+            <div class="field">
+              
+              <button onclick=closeDisconnectModal()  aria-label="close" class="button">Cancel</button>
+           
+              <button class="button is-danger"> Yes</button>
+
+            </div>
+          </form>
+    </div>
+  </div>
+
 
 
   <button onclick=test()  aria-label="close" class="button">test</button>
@@ -535,8 +618,42 @@ function sendDisconnect() {
 // send socket with name to check in list on name click, if value in previous network list just connect
 // case for password takew password do nmcli connect
 
+function checkUpdate() {
+  console.log("called")
+  $.ajax({
+      type: 'POST',
+      url: "/checkUpdate",
+      contentType: 'application/json;charset=UTF-8',
+      data: JSON.stringify({ "hello" : "test"}),
+      success:function(data) {
+        var return_data = JSON.parse(data);
 
+        if(typeof return_data =='object') {
+          console.log(return_data, "connected")
+        } else {
+          console.log("nowifi")
+        }
 
+      }
+
+  });
+  // var modal = document.querySelector('#updateModal');  // assuming you have only 1
+  //         var html = document.querySelector('html');
+  //         modal.classList.add('is-active');
+          
+  //         html.classList.add('is-clipped');
+          
+  //         modal.querySelector('.modal-background').addEventListener('click', function(e) {
+  //           e.preventDefault();
+  //           modal.classList.remove('is-active');
+  //           html.classList.remove('is-clipped');
+  //     });
+
+}
+
+function tempFunc() {
+  console.log("yeet")
+}
 
   </script>
   </html>

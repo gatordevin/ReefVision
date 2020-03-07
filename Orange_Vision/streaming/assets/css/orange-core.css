@@ -482,7 +482,7 @@ body {
     width: calc(100% - 80px);
     margin-left: 80px;
     position: relative;
-    background: #f0f0f0;
+    background: #f4f4f8;
     transition: all .3s
 }
 
