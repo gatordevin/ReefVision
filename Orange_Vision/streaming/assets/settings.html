@@ -263,7 +263,7 @@
         </div>
         <div class="field">
 
-          <button onclick="closeModal('passwordModal')" aria-label="close" class="button ">Cancel</button>
+          <button type="button" onclick="closeModal('passwordModal')" aria-label="close" class="button ">Cancel</button>
 
           <button class="button is-success"> Submit</button>
 
@@ -288,7 +288,7 @@
         </div>
         <div class="field">
 
-          <button onclick="closeModal('disconnectModal')" aria-label="close" class="button">Cancel</button>
+          <button type="button" onclick="closeModal('disconnectModal')" aria-label="close" class="button">Cancel</button>
 
           <button class="button is-danger"> Yes</button>
 
@@ -312,7 +312,7 @@
         </div>
         <div class="field">
 
-          <button onclick="closeModal('noWifiModal')" aria-label="close" class="button is-danger">Ok</button>
+          <button  type="button" onclick="closeModal('noWifiModal')" aria-label="close" class="button is-danger">Ok</button>
 
         </div>
       </form>
@@ -338,7 +338,7 @@
 
 
 
-          <button onclick="closeModal('updateUnavailableModal')" aria-label="close" class="button is-danger">Ok</button>
+          <button  type="button" onclick="closeModal('updateUnavailableModal')" aria-label="close" class="button is-danger">Ok</button>
 
         </div>
       </form>
@@ -363,8 +363,8 @@
         <div class="field">
 
 
-          <button onclick="closeModal('updateAvailableModal')" aria-label="close" class="button">cancel</button>
-          <button class="button notifications-alert-button">
+          <button type="button" onclick="closeModal('updateAvailableModal')" aria-label="close" class="button">cancel</button>
+          <button id="rebootAndInstall" class="button notifications-alert-button">
             <i class="fas fa-download"></i>
             &nbsp;
             Reboot and Install</a>
@@ -648,6 +648,14 @@
     console.log("yeet")
   }
   function updateAndReboot(){
+    document.getElementById("rebootAndInstall").classList.add('is-loading');
+    $.ajax({
+      type: 'POST',
+      url: "/updateAndReboot",
+      contentType: 'application/json;charset=UTF-8',
+      data: JSON.stringify({ "hello": "test" }),
+
+    });
 
   }
 </script>
