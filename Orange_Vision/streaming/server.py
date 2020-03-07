@@ -23,8 +23,8 @@ from .proto import messages_pb2 as pb2
 import Orange_Vision
 
 
-is_outdated, latest_version = check_outdated('Orange_Vision', Orange_Vision.__version__)
-print(is_outdated, latest_version)
+# is_outdated, latest_version = check_outdated('Orange_Vision', Orange_Vision.__version__)
+# print(is_outdated, latest_version)
 
 
 logger = logging.getLogger(__name__)
