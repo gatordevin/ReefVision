@@ -711,8 +711,11 @@ class WsProtoClient(ProtoClient):
 
             if request.path == '/getVersion':
                 self.send_post_data(Orange_Vision.__version__.strip('\"'))
+                
             if request.path == '/updateAndReboot':
-                os
+                os.system("sudo apt-get update && sudo apt-get dist-upgrade")
+                os.system("pip3 install --upgrade Orange_Vision")
+                os.system("sudo reboot now")
             if request.path == '/checkUpdate':
 
                 try:
