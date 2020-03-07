@@ -17,7 +17,7 @@ setup(
     name=package,
     version=__version__,
     description="FRC Orange Vision API",
-    long_description='API to run inference on image data coming from the camera.',
+    long_description=contents,
     author='Danny Dasilva',
     author_email='dannydasilva.solutions@gmail.com',
     license='Apache 2',
