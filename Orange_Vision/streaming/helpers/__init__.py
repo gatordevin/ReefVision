@@ -2,9 +2,9 @@ import json
 from datetime import datetime
 from threading import Thread
 
-from . import utils
-from .warnings import *
-from .utils import warn_with_ignore
+import utils
+from mywarnings import *
+from utils import warn_with_ignore
 
 
 
@@ -22,26 +22,27 @@ def check_outdated(package, version):
     somehow fails the exception is converted to a warning (OutdatedCacheFailedWarning)
     and the function continues normally.
     """
-
     from pkg_resources import parse_version
 
     parsed_version = parse_version(version)
     latest = None
 
-    with utils.cache_file(package, 'r') as f:
-        content = f.read()
-        if content:  # in case cache_file fails and so f is a dummy file
-            latest, cache_dt = json.loads(content)
-            if not utils.cache_is_valid(cache_dt):
-                latest = None
-
+    # with utils.cache_file(package, 'r') as f:
+    #     content = f.read()
+    #     if content:  # in case cache_file fails and so f is a dummy file
+    #         latest, cache_dt = json.loads(content)
+    #         if not utils.cache_is_valid(cache_dt):
+    #             latest = None
+    latest = None
     def get_latest():
         url = 'https://pypi.python.org/pypi/%s/json' % package
+        print(url)
         response = utils.get_url(url)
         return json.loads(response)['info']['version']
 
     if latest is None:
         latest = get_latest()
+        print(latest, "latest")
 
     parsed_latest = parse_version(latest)
 
@@ -64,3 +65,6 @@ def check_outdated(package, version):
 
     return not is_latest, latest
 
+if __name__ == '__main__':
+    is_outdated, latest_version = check_outdated('Orange_Vision', "0.0.6")
+    print(is_outdated, latest_version, "test")
