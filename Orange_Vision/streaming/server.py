@@ -724,8 +724,6 @@ class WsProtoClient(ProtoClient):
                 # content = bytes(data)
                 self.send_post_data(data)
                 
-
-                
             return True
 
 

@@ -22,7 +22,7 @@
         </div>
         <div class="dropdown-menu" id="dropdown-menu2" role="menu">
           <div class="dropdown-content" id="dropdown-content">
-            <button class="button" onclick=reloadConnections()>Reload</button>
+            <button id="reload" class="button" onclick=reloadConnections()>Reload</button>
            
           </div>
         </div>
@@ -113,6 +113,7 @@ function test() {
 }
 function reloadConnections() { 
   console.log("reload connections")
+  document.getElementById("refresh").classList.add('is-loading');
   $.ajax({
             type: 'POST',
             url: "/getConnections",
@@ -121,6 +122,8 @@ function reloadConnections() {
             success:function(data) {
               var fill_data = JSON.parse(data);
               console.log(fill_data)
+              document.getElementById("reload").classList.remove('is-loading');
+
               fillConnections(fill_data)
             }
 
@@ -133,7 +136,7 @@ function rebootDevice() {
 }
 
 function fillConnections(connections) {
-  document.getElementById('dropdown-content').innerHTML = '<button class="button" onclick=reloadConnections()>Reload</button>';
+  document.getElementById('dropdown-content').innerHTML = '<button id="refresh" class="button" onclick=reloadConnections()>Reload</button>';
   for (let [SSID, Security] of Object.entries(connections)) {
     
     const div = document.createElement('a');
