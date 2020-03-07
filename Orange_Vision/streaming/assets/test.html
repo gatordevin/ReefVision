@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Settings</title>
     <link rel="stylesheet" href="bulma.css">
-     <!--Core CSS -->
-     <link rel="stylesheet" href="css/orange-bulma.css">
-     <link rel="stylesheet" href="css/orange-core.css">
+  
+            <!--Core CSS -->
+            <link rel="stylesheet" href="css/orange-bulma.css">
+            <link rel="stylesheet" href="css/orange-core.css">
      
 
     <!-- <link rel="stylesheet" href="static/css/bulma.css"> -->
@@ -27,7 +28,7 @@
         </div>
         <div class="dropdown-menu" id="dropdown-menu2" role="menu">
           <div class="dropdown-content" id="dropdown-content">
-            <button id="refresh" class="button" onclick=reloadConnections()>Reload</button>
+            <button id="refresh" class="button" onclick=refreshConnections()>Refresh</button>
            
           </div>
         </div>
@@ -116,8 +117,8 @@ function test() {
 
         });
 }
-function reloadConnections() { 
-  console.log("reload connections")
+function refreshConnections() { 
+  console.log("refresh connections")
   document.getElementById("refresh").classList.add('is-loading');
   $.ajax({
             type: 'POST',
@@ -141,7 +142,7 @@ function rebootDevice() {
 }
 
 function fillConnections(connections) {
-  document.getElementById('dropdown-content').innerHTML = '<button id="refresh" class="button" onclick=reloadConnections()>Reload</button>';
+  document.getElementById('dropdown-content').innerHTML = '<button id="refresh" class="button" onclick=refreshConnections()>Refresh</button>';
   for (let [SSID, Security] of Object.entries(connections)) {
     
     const div = document.createElement('a');

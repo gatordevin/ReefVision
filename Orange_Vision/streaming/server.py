@@ -102,6 +102,9 @@ def _asset_path(path):
     elif path == '/wifi':
         logger.info("wifi connect")
         path  = 'test.html'
+    elif path == '/settings':
+        logger.info("settings")
+        path  = 'settings.html'
     elif path[0] == '/':
         path = path[1:]
 
