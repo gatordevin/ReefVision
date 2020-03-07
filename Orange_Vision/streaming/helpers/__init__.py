@@ -28,12 +28,12 @@ def check_outdated(package, version):
     parsed_version = parse_version(version)
     latest = None
 
-    with utils.cache_file(package, 'r') as f:
-        content = f.read()
-        if content:  # in case cache_file fails and so f is a dummy file
-            latest, cache_dt = json.loads(content)
-            if not utils.cache_is_valid(cache_dt):
-                latest = None
+    # with utils.cache_file(package, 'r') as f:
+    #     content = f.read()
+    #     if content:  # in case cache_file fails and so f is a dummy file
+    #         latest, cache_dt = json.loads(content)
+    #         if not utils.cache_is_valid(cache_dt):
+    #             latest = None
 
     def get_latest():
         url = 'https://pypi.python.org/pypi/%s/json' % package

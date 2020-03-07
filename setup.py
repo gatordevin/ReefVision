@@ -3,8 +3,12 @@ from setuptools import setup, find_packages
 import re
 
 import os
+from os import path
 package = 'Orange_Vision'
 
+here = path.abspath(path.dirname(__file__))
+with open(path.join(here, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
 
 init_path = os.path.join(os.path.dirname(__file__),
                          package,
@@ -17,7 +21,8 @@ setup(
     name=package,
     version=__version__,
     description="FRC Orange Vision API",
-    long_description=contents,
+    long_description=long_description,
+    long_description_content_type='text/markdown', 
     author='Danny Dasilva',
     author_email='dannydasilva.solutions@gmail.com',
     license='Apache 2',
