@@ -8565,7 +8565,7 @@ canvas {
     width: 100%;
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
-    max-height: 270px;
+    max-height: 500px;
     min-height: 270px;
 }
 
@@ -8606,3 +8606,29 @@ color: #fff !important;
 transition: all 0.5s;
 }
 
+.main-placeholder .placeholder-content h3 {
+font-family:'Montserrat', sans-serif;
+font-size:1.1rem;
+font-weight:600;
+color:#4a4a4a
+}
+.main-placeholder .placeholder-content {
+width:100%;
+max-width:340px;
+margin:0 auto;
+text-align:center;
+padding-top: 30px;
+}
+.main-placeholder .placeholder-content img {
+display:block;
+max-width:230px;
+margin:0 auto 20px auto
+}
+.main-placeholder .placeholder-content .button-wrap {
+    margin:20px 0
+}
+
+
+.main-placeholder .placeholder-content .text-wrap {
+    margin:10px 0
+}

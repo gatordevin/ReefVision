@@ -116,7 +116,7 @@
 
 .menu-fab {
     position: fixed;
-    right: 30px;
+    right: 90px;
     top: 12px;
    
     display: -ms-flexbox;
@@ -164,7 +164,7 @@
     overflow: hidden;
     width: 100%;
     transition: all 0.5s;
-    max-height: 270px;
+    max-height: 500px;
     min-height: 270px
 }
 
@@ -6003,7 +6003,7 @@ textarea.textarea.is-button+.textarea-button button {
         margin-top: 20px !important
     }
     .menu-fab {
-        top: 80px !important
+        top: 90px !important
     }
     .category-title .brand-filigrane {
         left: -26px !important

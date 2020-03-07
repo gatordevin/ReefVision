@@ -21,8 +21,9 @@ def search_wifi():
         if row['SSID'] != '--':
             
             if row['SSID'] == '*':
-                print("connected to ", row['MODE'])
-                connected = row['MODE']
+                if row['MODE'] != '--':
+                    print("connected to ", row['MODE'])
+                    connected = row['MODE']
                 
             else:
                 ssid = row['SSID']

@@ -132,28 +132,35 @@
               </div>
               <div id="t1" class="navtab-content is-active">
 
-                <p>hello?</p>
-                <div class="flat-card">
-                  <div id="account-main-placeholder" class="main-placeholder">
-                    <div class="placeholder-content">
-                      <img src="assets/img/illustrations/profile.svg" alt="">
-                      <h3>A new Version is available</h3>
-                      <p>Guest users don't have accounts. Please login or register to view your account.</p>
-                      <div id="notifications" class="button-wrap notifications">
-                        <a href="#" onclick=checkUpdate() class="button big-button notifications-button rounded raised">
-                          <i class="fas fa-cloud-download-alt"></i>
-                          &nbsp;
-                          Check for update</a>
+                <div class="columns">
+                  <div class="column column is-one-quarter"></div>
+                  <div class="column">
+
+
+
+
+                    <div class="flat-card">
+                      <div id="account-main-placeholder" class="main-placeholder">
+                        <div class="placeholder-content">
+                          <img src="images/profile.svg" alt="helo?">
+    
+                          <h3 id="version">A new Version is available</h3>
+                          <p class="text-wrap"> hit the button below to check for Updates</p>
+                          <div id="notifications" class="button-wrap notifications">
+                            <a href="#" onclick=checkUpdate() class="button big-button notifications-button rounded raised">
+                              <i class="fas fa-cloud-download-alt"></i>
+                              &nbsp;
+                              Check for update</a>
+                          </div>
+                        </div>
                       </div>
-
-
-                    
-
-                      <a>Don't have an account?</a>
                     </div>
-                  </div>
 
+                  </div>
+                  <div class="column "></div>
                 </div>
+
+                
 
 
 
@@ -281,7 +288,7 @@
         </div>
         <div class="field">
 
-          <button onclick=closeDisconnectModal() aria-label="close" class="button">Cancel</button>
+          <button onclick="closeModal('disconnectModal')" aria-label="close" class="button">Cancel</button>
 
           <button class="button is-danger"> Yes</button>
 
@@ -395,7 +402,20 @@
 
 
   var connections = { "Dasilva-Wifi": "WPA2", "ATTUMTu3Ys_2.4": "WPA2", "SKYNETgear-2.4": "WPA2", Spider: "WPA2", xfinitywifi: "--", "33333-Wifi": "WPA2", "2222-Wifi": "WPA2", "qweewqe-Wifi": "WPA2", "eeeeee-Wifi": "WPA2", }
+  $.ajax({
+      type: 'POST',
+      url: "/getVersion",
+      contentType: 'application/json;charset=UTF-8',
+      data: JSON.stringify({ "hello": "test" }),
+      success: function (data) {
+        var element = document.getElementById('version');
+        version = JSON.parse(data)
+        
+        element.innerHTML = `Current Version: ${version}`;
+      }
 
+    });
+  
   function test() {
     $.ajax({
       type: 'POST',
@@ -519,28 +539,12 @@
 
   }
 
-  function closeDisconnectModal() {
-    var modal = document.querySelector('#disconnectModal');   // assuming you have only 1
-    var html = document.querySelector('html');
-    modal.classList.remove('is-active');
-    html.classList.remove('is-clipped');
-  }
 
   function closeModal(selector) {
     var modal = document.querySelector(`#${selector}`);   // assuming you have only 1
     var html = document.querySelector('html');
     modal.classList.remove('is-active');
     html.classList.remove('is-clipped');
-  }
-
-
-  function closeAndConnect() {
-    var modal = document.querySelector('#passwordModal');  // assuming you have only 1
-    var html = document.querySelector('html');
-    modal.classList.remove('is-active');
-    html.classList.remove('is-clipped');
-    console.log("connecting")
-
   }
 
 
@@ -560,7 +564,7 @@
       data: "test",
     });
 
-    closeAndConnect()
+    closeModal('#passwordModal')
 
   }
 
@@ -644,7 +648,7 @@
     console.log("yeet")
   }
   function updateAndReboot(){
-    
+
   }
 </script>
 

@@ -707,6 +707,12 @@ class WsProtoClient(ProtoClient):
             self._logger.info('Upgraded to WebSocket')
             return False
         if request.command == 'POST':
+
+
+            if request.path == '/getVersion':
+                self.send_post_data(Orange_Vision.__version__.strip('\"'))
+            if request.path == '/updateAndReboot':
+                os
             if request.path == '/checkUpdate':
 
                 try:
