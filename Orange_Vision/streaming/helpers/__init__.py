@@ -53,8 +53,8 @@ def check_outdated(package, version):
 
         if parsed_version > parsed_latest:
             print(f'you are ahead current{version}, latest on Pypi {latest}')
-            is_latest = True
-            return is_latest, version
+            oudated = False
+            return oudated, latest
            
     is_latest = parsed_version == parsed_latest
     assert is_latest or parsed_version < parsed_latest
