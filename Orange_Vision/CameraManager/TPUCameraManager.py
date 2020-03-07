@@ -17,7 +17,7 @@ class CameraManager:
             camClass.stopPipeline()
             camClass.removeAllPipelines()
             self.camClasses.remove(camClass)
-    
+
     def close(self,camClass):
         camClass.stopPipeline()
         camClass.removeAllPipelines()

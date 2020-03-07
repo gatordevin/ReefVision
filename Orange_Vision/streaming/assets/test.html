@@ -22,7 +22,7 @@
         </div>
         <div class="dropdown-menu" id="dropdown-menu2" role="menu">
           <div class="dropdown-content" id="dropdown-content">
-            <button id="reload" class="button" onclick=reloadConnections()>Reload</button>
+            <button id="refresh" class="button" onclick=reloadConnections()>Reload</button>
            
           </div>
         </div>
@@ -122,7 +122,7 @@ function reloadConnections() {
             success:function(data) {
               var fill_data = JSON.parse(data);
               console.log(fill_data)
-              document.getElementById("reload").classList.remove('is-loading');
+              document.getElementById("refresh").classList.remove('is-loading');
 
               fillConnections(fill_data)
             }

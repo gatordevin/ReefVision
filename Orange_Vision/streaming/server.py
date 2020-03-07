@@ -93,7 +93,7 @@ def _file_content_type(path):
 BASE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), 'assets'))
 
 def _asset_path(path):
-    logger.info(f"{path} ahhhhhhhhhhhhhhh")
+    
     if path == '/':
         value = os.environ.get('SERVER_INDEX_HTML')
         if value is not None:

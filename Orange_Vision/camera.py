@@ -26,23 +26,28 @@ class Camera:
         self.model_res = model_res
         self._thread = None
         self.render_overlay = None
-        camMan = CameraManager() #Creates new camera manager object
         self.set_ai = set_ai
-        CSICam = camMan.newCam(0)
-        
-        self.H264 = CSICam.addPipeline(GStreamerPipelines.H264,(640,480),30,"h264sink")
-        #  re-enable later
-        if set_ai:
-            
-            self.AI = CSICam.addPipeline(GStreamerPipelines.RGB, model_res,30,"AI")
 
-        CSICam.startPipeline() 
+        self.camMan = CameraManager() #Creates new camera manager object
+        self.CSICam = self.camMan.newCam(0)
+        
+        self.H264 = self.CSICam.addPipeline(GStreamerPipelines.H264,(640,480),30,"h264sink")
+        #  re-enable later
+        if self.set_ai:
+            
+            self.AI = self.CSICam.addPipeline(GStreamerPipelines.RGB, self.model_res,30,"AI")
+
+        self.CSICam.startPipeline() 
+
         if os.path.exists('/dev/video1'):
-            self.USBCam = camMan.newCam(1) #Creates new RGB CSI-camera
+            self.USBCam = self.camMan.newCam(1) #Creates new RGB CSI-camera
             self.SB = self.USBCam.addPipeline(GStreamerPipelines.H264,(640,480),30,"usb_cam") #Creates an RGB stream at 30 fps and 640x480 for openCV
             self.USBCam.startPipeline()
         else:
             self.USBCam = None
+
+
+       
             
 
     @property
@@ -53,6 +58,9 @@ class Camera:
         pass
 
     def start_recording(self, obj, format, profile, inline_headers, bitrate, intra_period):
+
+
+        
         #Start gstreamer Streams
         
         objFunc = obj.write
@@ -82,7 +90,9 @@ class Camera:
                     self.render_overlay(tensor, layout, command)
                 sleep(.03)
     def stop_recording(self):
-        raise NotImplemented
+        print("called close")
+        # self.camMan.closeAll()
+        self._thread.join()
 
     def make_pipeline(self, fmt, profile, inline_headers, bitrate, intra_period):
         raise NotImplemented
