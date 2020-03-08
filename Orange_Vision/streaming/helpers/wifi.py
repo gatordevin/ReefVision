@@ -18,6 +18,7 @@ def search_wifi():
     wifi_list = {}
     connected = None
     for row in reader:
+        print(row['SSID'])
         if row['SSID'] != '--':
             
             if row['SSID'] == '*':
