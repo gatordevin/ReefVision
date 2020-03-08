@@ -12,7 +12,7 @@ import subprocess
 import sys
 import threading
 import time
-from .helpers.wifi import search_wifi, disconnect, connect_wifi
+from .helpers.old_wifi import search_wifi, disconnect, connect_wifi
 from .helpers.read_and_write import write_json
 from .helpers import  check_outdated
 from enum import Enum

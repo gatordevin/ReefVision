@@ -459,9 +459,11 @@
       const div = document.createElement('a');
       div.className = 'dropdown-item';
 
-
+      console.log(Security)
       switch (Security) {
-        case 'WPA2':
+        
+        case true:
+          console.log("truwwwe")
           div.id = 'open-modal';
 
           div.innerHTML = `${SSID}<i class="fas fa-lock is-pulled-right"> </i> `;

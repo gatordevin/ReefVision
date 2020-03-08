@@ -1,42 +1,19 @@
 import subprocess
 import csv
-from .read_and_write import write_json, read_json
 import os
+from wifi import Cell, Scheme
 
 def search_wifi():
-    process = subprocess.Popen(['nmcli', 'dev', 'wifi'], stdout=subprocess.PIPE)
-    #process = subprocess.Popen(['ls', '-l'], stdout=subprocess.PIPE)
-
-    stdout, stderr = process.communicate()
-    #print(stdout.decode('utf-8').splitlines())
-    reader = csv.DictReader(stdout.decode('utf-8').splitlines(),
-                            delimiter=' ', skipinitialspace=True,
-                            fieldnames=['SSID', 'MODE',
-                                        'CHAN', 'RATENUM', 'RATE',
-                                        'SIGNAL', 'BARS', 'SECURITY'])
-
     wifi_list = {}
-    connected = None
-    for row in reader:
-        print(row['SSID'])
-        if row['SSID'] != '--':
-            
-            if row['SSID'] == '*':
-                if row['MODE'] != '--':
-                    print("connected to ", row['MODE'])
-                    connected = row['MODE']
-                
-            else:
-                ssid = row['SSID']
-                security = row['SECURITY']
-                wifi_list[ssid] = security
-    del wifi_list['IN-USE']
+    cells = Cell.all('wlan0')
+    for connection in cells:
+        SSID = connection.ssid
+        enc = connection.encrypted
+        if SSID:
+            wifi_list[SSID] = enc
 
-    if connected:
-        wifi_list[connected] = 'connected'
-        write_previous_connections(connected)
     return wifi_list
-# # os.system('nmcli ddevice wifi connect my_wifi password <password>')
+
 
 
 
@@ -115,7 +92,6 @@ def ask_password():
 
 if __name__ == '__main__':
     wifi_list = search_wifi()
-    write_json('connections', wifi_list)
     print(wifi_list)
     # if connection['connection'] == False:
     #     wifi = next(iter(wifi_list))
