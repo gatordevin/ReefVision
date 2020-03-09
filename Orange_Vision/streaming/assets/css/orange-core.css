@@ -77,7 +77,7 @@
 .main-sidebar .sidebar-inner .icon-menu li a svg,
 .main-sidebar .sidebar-inner .bottom-menu li a svg {
     stroke: #A9ABAC;
-    width: 20px;
+    width: 60px;
     height: 20px
 }
 
@@ -89,9 +89,12 @@
 }
 
 .main_color{
-    stroke: #ff5e4d !important
+    color: #ff5e4d !important
 }
 
+.secondary_color{
+    color: #A9ABAC !important
+}
 
 
 

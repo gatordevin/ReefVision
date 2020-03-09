@@ -22,7 +22,7 @@
 
   <!-- Pageloader -->
   <div class="pageloader"></div>
-  <div class="infraloader is-active"></div>
+  
   <nav class="navbar mobile-navbar is-hidden-desktop is-hidden-tablet" aria-label="main navigation">
     <!-- Brand -->
     <div class="navbar-brand">
@@ -54,12 +54,12 @@
         <!-- Shop sidebar trigger -->
 
         <li>
-          <a href="orange-ai.html"><i data-feather="eye"></i></a>
+          <a href="orange-ai.html" class="secondary_color eye-icon"><i class="fas fa-eye"></i></i></a>
         </li>
 
 
         <li>
-          <a id="open-filters" href="#"><i data-feather="settings" class="main_color"></i></a>
+          <a id="open-filters" href="#" class="main_color"><i class="fas fa-cog" ></i></i></a>
         </li>
 
 
@@ -75,7 +75,7 @@
   <div id="quickview-trigger" class="menu-fab is-hidden-mobile">
     <div class="dropdown" id="myDropdown">
       <div class="dropdown-trigger">
-        <button class="button" onclick=dropdown() aria-controls="dropdown-menu2">
+        <button class="button" onclick=dropdown() id="dropdown-button" aria-controls="dropdown-menu2">
           <span>Wifi <i class="fas fa-wifi"></i> </span>
           <span class="icon is-small">
             <i class="fas fa-angle-down" aria-hidden="true"></i>
@@ -126,11 +126,11 @@
               <div class="tabs">
                 <ul>
                   <li class="is-active" data-tab="t1"><a>Updates</a></li>
-                  <li data-tab="t2"><a>Set Ip</a></li>
+                  <li data-tab="t2" ><a>Set Ip</a></li>
                   <li data-tab="t3"><a> Configure Pipeline </a></li>
                 </ul>
               </div>
-              <div id="t1" class="navtab-content is-active">
+              <div id="t1"  data-content="t1" class="navtab-content is-active">
 
                 <div class="columns">
                   <div class="column column is-one-quarter"></div>
@@ -166,7 +166,7 @@
 
 
               </div>
-              <div id="t2" class="navtab-content is-active">
+              <div id="t2" data-content="t2"  class="navtab-content">
 
 
 
@@ -190,7 +190,7 @@
               </div>
 
 
-              <div id="t3" class="navtab-content is-active">
+              <div id="t3" data-content="t3" class="navtab-content ">
 
 
 
@@ -382,17 +382,6 @@
 
 
 
-  <!-- /Main wrapper -->
-  <!-- Concatenated plugins -->
-  <script src="js/app.js"></script>
-
-
-
-  <!-- Helios js -->
-
-  <script src="js/nephos.js"></script>
-
-
 
 </body>
 
@@ -402,19 +391,19 @@
 
 
   var connections = { "Dasilva-Wifi": "WPA2", "ATTUMTu3Ys_2.4": "WPA2", "SKYNETgear-2.4": "WPA2", Spider: "WPA2", xfinitywifi: "--", "33333-Wifi": "WPA2", "2222-Wifi": "WPA2", "qweewqe-Wifi": "WPA2", "eeeeee-Wifi": "WPA2", }
-  $.ajax({
-      type: 'POST',
-      url: "/getVersion",
-      contentType: 'application/json;charset=UTF-8',
-      data: JSON.stringify({ "hello": "test" }),
-      success: function (data) {
-        var element = document.getElementById('version');
-        version = JSON.parse(data)
+  // $.ajax({
+  //     type: 'POST',
+  //     url: "/getVersion",
+  //     contentType: 'application/json;charset=UTF-8',
+  //     data: JSON.stringify({ "hello": "test" }),
+  //     success: function (data) {
+  //       var element = document.getElementById('version');
+  //       version = JSON.parse(data)
         
-        element.innerHTML = `Current Version is: ${version}`;
-      }
+  //       element.innerHTML = `Current Version is: ${version}`;
+  //     }
 
-    });
+  //   });
   
   function test() {
     $.ajax({
@@ -521,23 +510,39 @@
 
 
   }
+  var button = document.getElementById("dropdown-button");
+    var element = document.getElementById("myDropdown");
+    button.addEventListener('click', () => {
+      element.classList.toggle('is-active');
+    });
+
+
+    $('[data-tab]').on('click', function (e) {
+      console.log(this)
+      $(this).addClass('is-active').siblings('[data-tab]').removeClass('is-active')
+    console.log($('[data-content=' + $(this).data('tab') + ']'))
+    var tabContent = $('[data-content=' + $(this).data('tab') + ']')
+    tabContent.addClass('hello').addClass('is-active').siblings('[data-content]').removeClass('is-active')
+   
+})
+
 
 
   function dropdown() {
+    
 
-    var element = document.getElementById("myDropdown");
-    var contains = element.classList.contains("is-active")
-
-    switch (contains) {
-      case true:
-        element.classList.remove("is-active");
-        break;
-      case false:
-        element.classList.add("is-active");
-        break;
-      default:
-      // code block
-    }
+    // var contains = element.classList.contains("is-active")
+    // console.log(element)
+    // switch (contains) {
+    //   case true:
+    //     element.classList.remove("is-active");
+    //     break;
+    //   case false:
+    //     element.classList.add("is-active");
+    //     break;
+    //   default:
+    //   // code block
+    // }
 
   }
 
@@ -590,6 +595,7 @@
 
   function checkUpdate() {
     console.log("called")
+    
     $.ajax({
       type: 'POST',
       url: "/checkUpdate",
