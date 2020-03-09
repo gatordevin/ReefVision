@@ -8486,7 +8486,7 @@ input::-moz-focus-inner, input::-moz-focus-outer {
         height: 20px
     }
     .tabs a {
-        font-size: 3.7vw;
+        font-size: 3vw;
     }
     
 
@@ -8617,7 +8617,7 @@ width:100%;
 max-width:340px;
 margin:0 auto;
 text-align:center;
-padding-top: 30px;
+padding: 30px;
 }
 .main-placeholder .placeholder-content img {
 display:block;
