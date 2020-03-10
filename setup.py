@@ -21,7 +21,7 @@ setup(
     name=package,
     version=__version__,
     description="FRC Orange Vision API",
-    long_description=long_description,
+    long_description=long_description.strip('\n'),
     long_description_content_type='text/markdown', 
     author='Danny Dasilva',
     author_email='dannydasilva.solutions@gmail.com',
