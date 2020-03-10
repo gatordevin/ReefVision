@@ -27,7 +27,7 @@
     <!-- Brand -->
     <div class="navbar-brand">
       <a class="navbar>-item" href="home.html">
-        <img src="images/logo/orange-icon.svg" alt="">
+        <img src="images/logo/logo-white.svg" alt="">
       </a>
 
       <!-- Sidebar mode toggler icon -->
@@ -47,7 +47,7 @@
   <!-- Main Sidebar-->
   <div class="main-sidebar">
     <div class="sidebar-brand">
-      <a href="#"><img src="images/logo/orange-icon.svg" alt=""></a>
+      <a href="#"><img src="images/logo/logo-white.svg" alt=""></a>
     </div>
     <div class="sidebar-inner">
       <ul class="icon-menu">
@@ -118,7 +118,7 @@
             <!-- Title -->
             <div class="account-title">
               <h2> Settings</h2>
-              <img class="brand-filigrane" src="images/logo/orange-grey.svg" alt="">
+              <img class="brand-filigrane" src="images/logo/logo-grey.svg" alt="">
             </div>
 
             <!-- Account tabs -->
@@ -595,7 +595,7 @@
 
   function checkUpdate() {
     console.log("called")
-    
+    createModal('#updateAvailableModal')
     $.ajax({
       type: 'POST',
       url: "/checkUpdate",
