@@ -19,7 +19,7 @@
         <script type="text/javascript" src="broadway/Decoder.js"></script>
         <script type="text/javascript" src="broadway/Player.js"></script>
         <script type="text/javascript" src="ws_client.js"></script>
-
+        <script src="js/jquery.js"></script>
         <!--Core CSS -->
         <link rel="stylesheet" href="css/orange-bulma.css">
         <link rel="stylesheet" href="css/orange-core.css">
@@ -131,7 +131,7 @@
                                         <li data-tab="t3"><a> Both </a></li>
                                     </ul>
                                 </div>
-                                <div id="t1" class="navtab-content is-active">
+                                <div id="t1" data-content="t1" class="navtab-content is-active">
                                     
                                 
                                  
@@ -153,7 +153,7 @@
                                 
                                 
                                 </div>
-                                <div id="t2" class="navtab-content is-active">
+                                <div id="t2"   data-content="t2" class="navtab-content">
                                     
                                 
                                  
@@ -179,7 +179,7 @@
                             </div>
                             
 
-                            <div id="t3" class="navtab-content is-active">
+                            <div id="t3"  data-content="t3" class="navtab-content">
                                     
                                 
                                  
@@ -238,5 +238,15 @@
     
  
     </body>  
+<script>
+     $('[data-tab]').on('click', function (e) {
+      console.log(this)
+      $(this).addClass('is-active').siblings('[data-tab]').removeClass('is-active')
+    console.log($('[data-content=' + $(this).data('tab') + ']'))
+    var tabContent = $('[data-content=' + $(this).data('tab') + ']')
+    tabContent.addClass('hello').addClass('is-active').siblings('[data-content]').removeClass('is-active')
+   
+})
 
+</script>
 </html>

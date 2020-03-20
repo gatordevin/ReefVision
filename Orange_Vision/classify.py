@@ -81,7 +81,7 @@ def overlay(title, results, inference_time, inference_rate, layout):
         doc += svg.Rect(x=0, y=0, width=size_em(len(line)), height='1em',
                        transform='translate(%s, %s) scale(1,-1)' % (ox1, y), _class='back')
         doc += svg.Text(line, x=ox1, y=y, fill='white')
-
+    print(str(doc))
     return str(doc)
 
 def top_results(window, top_k):
@@ -122,7 +122,7 @@ def render_gen(args):
     output = None
     while True:
         tensor, layout, command = (yield output)
-
+    
         inference_rate = next(fps_counter)
         if draw_overlay:
             start = time.monotonic()
@@ -133,7 +133,7 @@ def render_gen(args):
             results = acc.send(results)
             if args.print:
                 print_results(inference_rate, results)
-
+            print_results(inference_rate, results)
             title = titles[engine]
             output = overlay(title, results, inference_time, inference_rate, layout)
         else:

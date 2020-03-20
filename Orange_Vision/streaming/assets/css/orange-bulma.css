@@ -8116,7 +8116,7 @@ print {
 
 
 .section {
-    padding: 3rem 1.5rem
+    padding: 2rem 1.5rem
 }
 
 
@@ -8540,8 +8540,8 @@ canvas {
 }
 
 .mainSection {
-    width: 75vw;
-    padding-left: 10vw;
+    width: 70vw;
+    padding-left: 15vw;
 }
 
 

@@ -139,3 +139,14 @@ class CssStyle(Tag):
     @property
     def value(self):
         return '<![CDATA[%s]]>' % '\n'.join('%s {%s}' % (k, v) for k, v in self._styles.items())
+if __name__ == "__main__":
+
+    x = 4
+    y = 4
+    w = 200
+    h = 500
+    color = 'yellow'
+
+    t = Rect(x=x, y=y, width=w, height=h,
+                        style='stroke:%s' % color, _class='bbox', stroke_dasharray='34')
+    print(str(t))

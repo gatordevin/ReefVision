@@ -96,8 +96,18 @@ def overlay(title, objs, get_color, inference_time, inference_rate, layout):
         x, y, w, h = obj.bbox.scale(*size)
         color = get_color(obj.id)
 
+
+
+        d_w = w / 4
+        w_empty = w / 2
+        both =  (w /4) + (h /4)
+        d_h = (h /4)
+        h_empty = h/2
+      
+        dash_array = f'{d_w}, {w_empty}, {both}, {h_empty}, {both}, {w_empty}, {both}, {h_empty}, {d_h}'
         doc += svg.Rect(x=x, y=y, width=w, height=h,
-                        style='stroke:%s' % color, _class='bbox')
+                        style='stroke:%s' % color, stroke_dasharray=dash_array, _class='bbox')
+    
         doc += svg.Rect(x=x, y=y+h ,
                         width=size_em(len(caption)), height='1.2em', fill=color)
         t = svg.Text(x=x, y=y+h, fill='black')
