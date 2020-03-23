@@ -8632,3 +8632,7 @@ margin:0 auto 20px auto
 .main-placeholder .placeholder-content .text-wrap {
     margin:10px 0
 }
+
+.modal-img {
+    max-width: 400px;
+}
