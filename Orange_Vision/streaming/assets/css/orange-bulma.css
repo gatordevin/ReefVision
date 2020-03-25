@@ -8539,6 +8539,7 @@ canvas {
     z-index: 2;
 }
 
+
 .mainSection {
     width: 70vw;
     padding-left: 15vw;
@@ -8635,4 +8636,8 @@ margin:0 auto 20px auto
 
 .modal-img {
     max-width: 400px;
+}
+
+.no-pad {
+    padding: 0 !important;
 }

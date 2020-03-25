@@ -13,7 +13,7 @@ import sys
 import threading
 import time
 from .helpers.old_wifi import search_wifi, disconnect, connect_wifi
-from .helpers.read_and_write import write_json
+from .helpers.read_and_write import write_json, delete_json, json_parse
 from .helpers import  check_outdated
 from enum import Enum
 from http.server import BaseHTTPRequestHandler
@@ -750,7 +750,19 @@ class WsProtoClient(ProtoClient):
                 wifi_list = search_wifi()
                 
                 self.send_post_data(wifi_list)
-                
+            
+
+            if request.path == '/add_profile':
+                data = request.headers['Authority']
+                data = json.loads(data)
+                write_json('profiles', data)
+
+
+            if request.path == '/delete_profile':
+                data = request.headers['Authority']
+                data = json.loads(data)
+                data = delete_json('profiles', data)
+
             return True
 
 
