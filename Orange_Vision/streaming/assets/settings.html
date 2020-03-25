@@ -333,7 +333,7 @@
             <p>Connect to a network in the wifi panel</p>
             <div>
             
-              <button  type="button" onclick="closeModal('updateUnavailableModal')" aria-label="close" class="button is-danger">Ok</button>
+              <button  type="button" onclick="closeModal('noWifiModal')" aria-label="close" class="button is-danger">Ok</button>
   
             </div>
             
@@ -628,9 +628,14 @@
       url: "/disconnect",
       contentType: 'application/json;charset=UTF-8',
       data: "test",
+      success: function (data) {
+        console.log("disconnect", data, "ahhhhhhhhhhhh")
+        closeModal('disconnectModal')
+        refreshConnections()
+      } 
+
     });
-    closeModal('disconnectModal')
-    refreshConnections()
+    
   }
 
   // send socket with name to check in list on name click, if value in previous network list just connect

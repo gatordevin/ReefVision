@@ -1,7 +1,7 @@
 import subprocess
 import csv
 import os
-from wifi import Cell, Scheme
+from .wifi import Cell, Scheme
 from subprocess import check_output
 import re
 

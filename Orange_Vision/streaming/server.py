@@ -713,7 +713,7 @@ class WsProtoClient(ProtoClient):
                 self.send_post_data(Orange_Vision.__version__.strip('\"'))
                 
             if request.path == '/updateAndReboot':
-                os.system("sudo apt-get update && sudo apt-get dist-upgrade")
+                os.system("sudo apt-get update && sudo apt-get dist-upgrade -y")
                 os.system("pip3 install --upgrade Orange_Vision")
                 os.system("sudo reboot now")
             if request.path == '/checkUpdate':
@@ -740,6 +740,8 @@ class WsProtoClient(ProtoClient):
                 path = request.headers['Authority']
                 print(path, "disconnect")
                 disconnect(path)
+                data = "False"
+                self.send_post_data(data)
 
             if request.path == '/connect':
                 path = request.headers['Authority']
