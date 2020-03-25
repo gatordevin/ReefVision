@@ -743,8 +743,10 @@ class WsProtoClient(ProtoClient):
 
             if request.path == '/connect':
                 path = request.headers['Authority']
-                print(eval(path), "connect")
-                connect_wifi(eval(path))
+                data = json.loads(path)
+                result = connect_wifi(data)
+                self.send_post_data(result)
+
 
             if request.path == '/getConnections':
                 wifi_list = search_wifi()

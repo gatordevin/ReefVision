@@ -277,16 +277,18 @@
           <div class="control has-icons-left">
             <input id="user_input" name="password" type="password" pattern=".{8,}" required title="8 characters minimum"
               placeholder="*******" class="input">
-            <span class="icon is-small is-left">
-              <svg class="svg-inline--fa fa-lock fa-w-14" aria-hidden="true" data-prefix="fa" data-icon="lock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"></path></svg>
-            </span>
+              <span class="is-tiny">
+                
+                <svg class="svg-inline--fa fa-lock fa-w-14" aria-hidden="true" data-prefix="fa" data-icon="lock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"></path></svg>
+              </span>
           </div>
         </div>
+        <div class = "error" id="passwordError"></div>
         <div class="field">
 
           <button type="button" onclick="closeModal('passwordModal')" aria-label="close" class="button ">Cancel</button>
 
-          <button class="button is-success"> Submit</button>
+          <button id="submitPassword" class="button is-success"> Submit</button>
 
         </div>
       </form>
@@ -489,7 +491,6 @@
       switch (Security) {
         
         case true:
-          console.log("truwwwe")
           div.id = 'open-modal';
 
           div.innerHTML = `${SSID}  <span class="icon is-small"> <svg class="svg-inline--fa fa-lock fa-w-14" aria-hidden="true" data-prefix="fa" data-icon="lock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"></path></svg></span>`;
@@ -512,7 +513,6 @@
           div.classList.add('lightGreen')
           div.addEventListener('click', function (event) {
 
-            //send socket here to check for pwsd
             console.log(SSID, "locked")
             window.lockedSelector = SSID
             createModal('#disconnectModal');
@@ -535,8 +535,12 @@
               url: "/connect",
               contentType: 'application/json;charset=UTF-8',
               data: JSON.stringify({ "connect": str }),
-            });
 
+              success: function (data) {
+                refreshConnections()
+              }
+            });
+            
           })
           document.getElementById('dropdown-content').appendChild(div);
 
@@ -580,19 +584,36 @@
 
   function showInput() {
     t = document.getElementById("user_input");
-    console.log(t.value, window.lockedSelector, "valueeee")
+    error = document.getElementById("passwordError");
+    btn = document.getElementById("submitPassword")
+    btn.classList.add('is-loading');
+
+    connect = {[window.lockedSelector] : t.value}
+    console.log(connect,  "valueeee")
     $.ajax({
       type: 'POST',
       beforeSend: function (request) {
-        request.setRequestHeader("Authority", JSON.stringify(lockedSelector));
+        request.setRequestHeader("Authority", JSON.stringify(connect));
       },
 
       url: "/connect",
       contentType: 'application/json;charset=UTF-8',
       data: "test",
+      success: function (data) {
+        err = data.includes("Error");
+        if (err) {
+          error.innerHTML = data
+          btn.classList.remove('is-loading');
+        } else {
+          closeModal('passwordModal')
+          refreshConnections()
+        }
+        
+      }
+
     });
 
-    closeModal('passwordModal')
+    
 
   }
 
@@ -608,7 +629,8 @@
       contentType: 'application/json;charset=UTF-8',
       data: "test",
     });
-    closeModal('disconnect')
+    closeModal('disconnectModal')
+    refreshConnections()
   }
 
   // send socket with name to check in list on name click, if value in previous network list just connect
@@ -616,7 +638,6 @@
 
   function checkUpdate() {
     console.log("called")
-    createModal('#noWifiModal')
     $.ajax({
       type: 'POST',
       url: "/checkUpdate",

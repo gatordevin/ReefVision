@@ -8641,3 +8641,18 @@ margin:0 auto 20px auto
 .no-pad {
     padding: 0 !important;
 }
+
+.is-tiny {
+    color: #dbdbdb;
+    pointer-events: none;
+    position: absolute;
+    top: 3px;
+    width: 1.5em;
+    z-index: 4;
+    left: 5px;
+}
+
+
+.error {
+    color: red;
+}
