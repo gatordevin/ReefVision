@@ -2,9 +2,8 @@ from __future__ import division
 
 import re
 import textwrap
-
-import .subprocess_compat as subprocess
-from wifi.utils import db2dbm
+from . import subprocess_compat as subprocess
+from .utils import db2dbm
 
 class ConnectionError(Exception):
     pass
@@ -177,9 +176,8 @@ def normalize(cell_block):
 import re
 import itertools
 
-import wifi.subprocess_compat as subprocess
-from pbkdf2 import PBKDF2
-from wifi.utils import ensure_file_exists
+from .pbkdf2 import PBKDF2
+from .utils import ensure_file_exists
 
 
 
