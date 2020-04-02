@@ -27,4 +27,5 @@ Your own personal **Reef** is fully set up and has all the tools you need to sta
 ## **Whats Next?**
 We have a few other guides that might be helpful
 
-### **[Developing without the FRC Control System](../Local_Development/withoutfrc.md)**
+### **[Getting Started Without The FRC Control System](,/Local_Development/withoutfrc.md)**
+### **[FRC Programming](./Programming/programming.md)**
