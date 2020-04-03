@@ -9,7 +9,7 @@ After=weston.target
 PAMName=login
 Type=simple
 User=mendel
-WorkingDirectory=/home/mendel
+WorkingDirectory=/home/mendel/ReefVision
 Environment=DISPLAY=:0
 ExecStart=/bin/bash /usr/bin/orange_service.sh
 Restart=always
@@ -21,7 +21,7 @@ EOT
 sudo mv orange.service /lib/systemd/system/orange.service
 
 
-echo "orange_detect_server" >> orange_service.sh
+echo "python3 -m Orange_Vision.detect_server" >> orange_service.sh
 sudo chmod u+x orange_service.sh
 sudo mv orange_service.sh /usr/bin
 sudo systemctl enable orange.service
