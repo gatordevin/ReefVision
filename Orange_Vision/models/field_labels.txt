@@ -1,3 +1,0 @@
-   0  outer_port
-   1  inner_port
-   2  bottom_port
