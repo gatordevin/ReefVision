@@ -1,11 +1,11 @@
-# Orange_Vision
-FRC Orange Vision package
+# Reef_Vision
+FRC Reef Vision package
 
 https://pypi.org/project/Orange_Vision/
 
 ### How to use
 
-`sudo pip3 install Orange_Vision`
+`sudo pip3 install Reef_Vision`
  
 > sudo is for running scripts
 
@@ -19,13 +19,13 @@ https://pypi.org/project/Orange_Vision/
 
 ### run server
 
-`orange_detect_server`
+`reef_detect_server`
 
 
 
 ### run with inference
 
-`orange_detect_server --enable_ai`
+`reef_detect_server --enable_ai`
 
 
 ### enable .local

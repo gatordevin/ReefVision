@@ -1,8 +1,8 @@
 
-rm -rf orange.service
-cat <<EOT >> orange.service
+rm -rf reef.service
+cat <<EOT >> reef.service
 [Unit]
-Description=systemd auto orange service
+Description=systemd auto reef service
 After=weston.target
 
 [Service]
@@ -11,18 +11,18 @@ Type=simple
 User=mendel
 WorkingDirectory=/home/mendel
 Environment=DISPLAY=:0
-ExecStart=/bin/bash /usr/bin/orange_service.sh
+ExecStart=/bin/bash /usr/bin/reef_service.sh
 Restart=always
 
 [Install]
 WantedBy=multi-user.target
 EOT
 
-sudo mv orange.service /lib/systemd/system/orange.service
+sudo mv reef.service /lib/systemd/system/reef.service
 
 
-echo "orange_detect_server" >> orange_service.sh
-sudo chmod u+x orange_service.sh
-sudo mv orange_service.sh /usr/bin
-sudo systemctl enable orange.service
-sudo systemctl start orange.service
+echo "reef_detect_server" >> reef_service.sh
+sudo chmod u+x reef_service.sh
+sudo mv reef_service.sh /usr/bin
+sudo systemctl enable reef.service
+sudo systemctl start reef.service
