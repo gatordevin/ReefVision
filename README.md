@@ -41,6 +41,6 @@ https://pypi.org/project/Orange_Vision/
 
 
 ### stop autoboot and kill server
-`kill.sh`
+`stopautoboot.sh`
 
 
