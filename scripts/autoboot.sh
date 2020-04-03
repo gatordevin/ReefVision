@@ -25,3 +25,4 @@ echo "orange_detect_server" >> orange_service.sh
 sudo chmod u+x orange_service.sh
 sudo mv orange_service.sh /usr/bin
 sudo systemctl enable orange.service
+sudo systemctl start orange.service
