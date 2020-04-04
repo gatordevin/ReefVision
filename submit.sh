@@ -90,6 +90,11 @@ python3 setup.py bdist sdist
 sudo pip3 install "dist/Reef_Vision-0.0.20.tar.gz"
 sudo killserver.sh
 sudo stopautoboot.sh
+if [ $? -eq 0 ]; then
+    echo OK
+else
+    echo FAIL
+fi
 sudo pip3 uninstall -y Reef_Vision
 #sed -i "4i\
 #    $major.$minor.$patch ($(date +"%m-%d-%Y"))\n~~~~~~~~~~~~~~~~~~\n\n" $historyFile
