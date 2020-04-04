@@ -86,7 +86,7 @@ while false; do
 done
 
 python3 setup.py bdist sdist
-pip3 install "dist/Reef_Vision-0.0.20.tar.gz"
+sudo pip3 install "dist/Reef_Vision-0.0.20.tar.gz"
 #sed -i "4i\
 #    $major.$minor.$patch ($(date +"%m-%d-%Y"))\n~~~~~~~~~~~~~~~~~~\n\n" $historyFile
 #sed -i "7i\
