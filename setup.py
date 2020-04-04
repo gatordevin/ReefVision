@@ -41,8 +41,6 @@ setup(
         'scripts/killserver.sh',
         'scripts/stopautoboot.sh',
         'scripts/autoboot.sh',
-        'scripts/wifi_down.sh',
-        'scripts/wifi_up.sh'
     ],
     entry_points = {
         'console_scripts': ['reef_classify=Reef_Vision.classify:main',
