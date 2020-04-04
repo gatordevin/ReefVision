@@ -1,6 +1,7 @@
 file="./Reef_Vision/__init__.py"
 line=$(sed -n '2p' < $file)
 version=$(grep -o "'.*'" $file | sed "s/'//g")
+
 while true; do
     while true; do
         echo CURRENT VERSION IS $version
@@ -41,6 +42,7 @@ while true; do
 
             [yY]*)
                 sed -i "s/$version/$major.$minor.$patch/g" $file
+                trap "sed -i "s/$major.$minor.$patch/$version/g" $file ; echo "" ; exit 1" INT
                 echo Version now $major.$minor.$patch
                 break 2
                 ;;
@@ -71,10 +73,6 @@ while true; do
                     echo Anything Else?
                 fi
             done
-            sed -i "4i\
-                $major.$minor.$patch ($(date +"%m-%d-%Y"))\n~~~~~~~~~~~~~~~~~~\n\n" $historyFile
-            sed -i "7i\
-                ${totalchanges}\n" $historyFile
         else
             printf "History\n-------\n\n\n" > $historyFile   
         fi
@@ -86,6 +84,12 @@ while true; do
         printf "History\n-------\n\n\n" > $historyFile
     fi
 done
+
+sed -i "4i\
+    $major.$minor.$patch ($(date +"%m-%d-%Y"))\n~~~~~~~~~~~~~~~~~~\n\n" $historyFile
+sed -i "7i\
+    ${totalchanges}\n" $historyFile
 #python3 setup.py bdist sdist 
 
 #python3 setup.py sdist upload
+
