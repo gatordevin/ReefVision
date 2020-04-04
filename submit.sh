@@ -2,7 +2,7 @@ file="./Reef_Vision/__init__.py"
 line=$(sed -n '2p' < $file)
 version=$(grep -o "'.*'" $file | sed "s/'//g")
 
-while true; do
+while false; do
     while true; do
         echo CURRENT VERSION IS $version
         IFS='.' read -r major minor patch <<< ${version}
@@ -59,7 +59,7 @@ done
 
 historyFile="HISTORY.rst"
 totalchanges=""
-while true; do
+while false; do
     if [ -f "$historyFile" ]; then
         if [ $(sed -n '/^History/p;q' $historyFile) == "History" ]; then
             echo What changes did you make?
@@ -85,11 +85,13 @@ while true; do
     fi
 done
 
-sed -i "4i\
-    $major.$minor.$patch ($(date +"%m-%d-%Y"))\n~~~~~~~~~~~~~~~~~~\n\n" $historyFile
-sed -i "7i\
-    ${totalchanges}\n" $historyFile
-#python3 setup.py bdist sdist 
+python3 setup.py bdist sdist
+pip3 install "dist/Reef_Vision-0.0.20.tar.gz"
+#sed -i "4i\
+#    $major.$minor.$patch ($(date +"%m-%d-%Y"))\n~~~~~~~~~~~~~~~~~~\n\n" $historyFile
+#sed -i "7i\
+#    ${totalchanges}\n" $historyFile
+
 
 #python3 setup.py sdist upload
 
