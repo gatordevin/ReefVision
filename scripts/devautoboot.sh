@@ -9,7 +9,7 @@ After=weston.target
 PAMName=login
 Type=simple
 User=mendel
-WorkingDirectory=/home/mendel
+WorkingDirectory=/home/mendel/ReefVision
 Environment=DISPLAY=:0
 ExecStart=/bin/bash /usr/bin/reef_service.sh
 Restart=always
@@ -21,7 +21,7 @@ EOT
 sudo mv reef.service /lib/systemd/system/reef.service
 
 
-echo "reef_detect_server" >> reef_service.sh
+echo "python3 -m Reef_Vision.detect_server" >> reef_service.sh
 sudo chmod u+x reef_service.sh
 sudo mv reef_service.sh /usr/bin
 sudo systemctl enable reef.service

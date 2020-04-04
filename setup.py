@@ -4,7 +4,7 @@ import re
 
 import os
 from os import path
-package = 'Orange_Vision'
+package = 'Reef_Vision'
 
 here = path.abspath(path.dirname(__file__))
 with open(path.join(here, 'README.md'), encoding='utf-8') as f:
@@ -20,7 +20,7 @@ __version__ = re.search(r"__version__ = '([.\d]+)'", contents).group(1)
 setup(
     name=package,
     version=__version__,
-    description="FRC Orange Vision API",
+    description="FRC Reef Vision API",
     long_description=long_description.strip('\n'),
     long_description_content_type='text/markdown', 
     author='Danny Dasilva',
@@ -38,16 +38,17 @@ setup(
         'requests'
     ],
     scripts = [
-        'scripts/kill.sh',
+        'scripts/killserver.sh',
+        'scripts/stopautoboot.sh',
         'scripts/autoboot.sh',
         'scripts/wifi_down.sh',
         'scripts/wifi_up.sh'
     ],
     entry_points = {
-        'console_scripts': ['orange_classify=Orange_Vision.classify:main',
-                            'orange_classify_server=Orange_Vision.classify_server:main',
-                            'orange_detect=Orange_Vision.detect:main',
-                            'orange_detect_server=Orange_Vision.detect_server:main'],
+        'console_scripts': ['reef_classify=Reef_Vision.classify:main',
+                            'reef_classify_server=Reef_Vision.classify_server:main',
+                            'reef_detect=Reef_Vision.detect:main',
+                            'reef_detect_server=Reef_Vision.detect_server:main'],
     },
     python_requires='>=3.5.3',
 )

@@ -2,7 +2,7 @@
 import re
 
 import os
-package = 'Orange_Vision'
+package = 'Reef_Vision'
 
 
 init_path = os.path.join(os.path.dirname(__file__),
