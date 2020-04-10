@@ -87,16 +87,16 @@ while false; do
     fi
 done
 
-python3 setup.py bdist sdist
+python3 setup.py sdist bdist_wheel
 major=0
 minor=0
-patch=21
+patch=24
 sudo pip3 install "dist/Reef_Vision-$major.$minor.$patch.tar.gz"
 sudo killserver.sh
 sudo stopautoboot.sh
 if [ $? -eq 0 ]; then
     echo Build Success. Now Releasing Version $major.$minor.$patch
-    echo "reefvision" | twine upload dist/*
+    echo "ReefVision" | python3 -m twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
     sed -i "4i\
         $major.$minor.$patch ($(date +"%m-%d-%Y"))\n~~~~~~~~~~~~~~~~~~\n\n" $historyFile
     sed -i "7i\
@@ -105,6 +105,8 @@ else
     echo Build of version $major.$minor.$patch failed
 fi
 sudo pip3 uninstall -y Reef_Vision
+
+sleep 40
 
 sudo pip3 install Reef-Vision==$major.$minor.$patch
 if [ $? -eq 0 ]; then
