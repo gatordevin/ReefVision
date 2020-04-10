@@ -4,7 +4,7 @@ file="./Reef_Vision/__init__.py"
 line=$(sed -n '2p' < $file)
 version=$(grep -o "'.*'" $file | sed "s/'//g")
 
-while true; do
+while false; do
     while true; do
         echo CURRENT VERSION IS $version
         IFS='.' read -r major minor patch <<< ${version}
@@ -38,7 +38,7 @@ while true; do
         esac
     done
 
-    while true; do
+    while false; do
         read -p "New version is $major.$minor.$patch [y][n]:" userConf
         case $userConf in
 
@@ -61,7 +61,7 @@ done
 
 historyFile="HISTORY.rst"
 totalchanges=""
-while true; do
+while false; do
     if [ -f "$historyFile" ]; then
         if [ $(sed -n '/^History/p;q' $historyFile) == "History" ]; then
             echo What changes did you make?
@@ -90,7 +90,7 @@ done
 python3 setup.py bdist sdist
 major=0
 minor=0
-patch=20
+patch=21
 sudo pip3 install "dist/Reef_Vision-$major.$minor.$patch.tar.gz"
 sudo killserver.sh
 sudo stopautoboot.sh
