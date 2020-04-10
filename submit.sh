@@ -4,7 +4,7 @@ file="./Reef_Vision/__init__.py"
 line=$(sed -n '2p' < $file)
 version=$(grep -o "'.*'" $file | sed "s/'//g")
 
-while false; do
+while true; do
     while true; do
         echo CURRENT VERSION IS $version
         IFS='.' read -r major minor patch <<< ${version}
@@ -61,7 +61,7 @@ done
 
 historyFile="HISTORY.rst"
 totalchanges=""
-while false; do
+while true; do
     if [ -f "$historyFile" ]; then
         if [ $(sed -n '/^History/p;q' $historyFile) == "History" ]; then
             echo What changes did you make?
@@ -97,10 +97,10 @@ sudo stopautoboot.sh
 if [ $? -eq 0 ]; then
     echo Build Success. Now Releasing Version $major.$minor.$patch
     echo "reefvision" | twine upload dist/*
-    #sed -i "4i\
-    #    $major.$minor.$patch ($(date +"%m-%d-%Y"))\n~~~~~~~~~~~~~~~~~~\n\n" $historyFile
-    #sed -i "7i\
-    #    ${totalchanges}\n" $historyFile
+    sed -i "4i\
+        $major.$minor.$patch ($(date +"%m-%d-%Y"))\n~~~~~~~~~~~~~~~~~~\n\n" $historyFile
+    sed -i "7i\
+        ${totalchanges}\n" $historyFile
 else
     echo Build of version $major.$minor.$patch failed
 fi
