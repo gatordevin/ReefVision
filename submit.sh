@@ -1,3 +1,5 @@
+sudo apt-get install build-essential libssl-dev libffi-dev python-dev python3-dev
+pip3 install twine
 file="./Reef_Vision/__init__.py"
 line=$(sed -n '2p' < $file)
 version=$(grep -o "'.*'" $file | sed "s/'//g")
@@ -92,6 +94,7 @@ sudo killserver.sh
 sudo stopautoboot.sh
 if [ $? -eq 0 ]; then
     echo Build Success. Now Releasing Version $major.$minor.$patch
+    echo "reefvision" | twine upload dist/*
     #sed -i "4i\
     #    $major.$minor.$patch ($(date +"%m-%d-%Y"))\n~~~~~~~~~~~~~~~~~~\n\n" $historyFile
     #sed -i "7i\
