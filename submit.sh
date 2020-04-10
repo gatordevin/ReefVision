@@ -4,7 +4,7 @@ file="./Reef_Vision/__init__.py"
 line=$(sed -n '2p' < $file)
 version=$(grep -o "'.*'" $file | sed "s/'//g")
 
-while false; do
+while true; do
     while true; do
         echo CURRENT VERSION IS $version
         IFS='.' read -r major minor patch <<< ${version}
@@ -38,7 +38,7 @@ while false; do
         esac
     done
 
-    while false; do
+    while true; do
         read -p "New version is $major.$minor.$patch [y][n]:" userConf
         case $userConf in
 
@@ -61,7 +61,7 @@ done
 
 historyFile="HISTORY.rst"
 totalchanges=""
-while false; do
+while true; do
     if [ -f "$historyFile" ]; then
         if [ $(sed -n '/^History/p;q' $historyFile) == "History" ]; then
             echo What changes did you make?
