@@ -88,9 +88,6 @@ while false; do
 done
 
 python3 setup.py sdist bdist_wheel
-major=0
-minor=0
-patch=24
 sudo pip3 install "dist/Reef_Vision-$major.$minor.$patch.tar.gz"
 sudo killserver.sh
 sudo stopautoboot.sh
@@ -106,14 +103,4 @@ else
 fi
 sudo pip3 uninstall -y Reef_Vision
 
-sleep 40
-
-sudo pip3 install Reef-Vision==$major.$minor.$patch
-if [ $? -eq 0 ]; then
-    echo Release Succesful
-    echo Released version $major.$minor.$patch | ./gitpush.sh
-else
-    echo Release Failed
-fi
-sudo pip3 uninstall -y Reef_Vision
-
+echo Please verify verion release by running sudo pip3 install Reef-Vision==$major.$minor.$patch
