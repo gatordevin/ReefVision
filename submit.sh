@@ -4,7 +4,7 @@ file="./Reef_Vision/__init__.py"
 line=$(sed -n '2p' < $file)
 version=$(grep -o "'.*'" $file | sed "s/'//g")
 
-while false; do
+while true; do
     while true; do
         echo CURRENT VERSION IS $version
         IFS='.' read -r major minor patch <<< ${version}
@@ -38,7 +38,7 @@ while false; do
         esac
     done
 
-    while false; do
+    while true; do
         read -p "New version is $major.$minor.$patch [y][n]:" userConf
         case $userConf in
 
@@ -61,7 +61,7 @@ done
 
 historyFile="HISTORY.rst"
 totalchanges=""
-while false; do
+while true; do
     if [ -f "$historyFile" ]; then
         if [ $(sed -n '/^History/p;q' $historyFile) == "History" ]; then
             echo What changes did you make?
@@ -87,16 +87,13 @@ while false; do
     fi
 done
 
-python3 setup.py bdist sdist
-major=0
-minor=0
-patch=21
+python3 setup.py sdist bdist_wheel
 sudo pip3 install "dist/Reef_Vision-$major.$minor.$patch.tar.gz"
 sudo killserver.sh
 sudo stopautoboot.sh
 if [ $? -eq 0 ]; then
     echo Build Success. Now Releasing Version $major.$minor.$patch
-    echo "reefvision" | twine upload dist/*
+    echo "ReefVision" | python3 -m twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
     sed -i "4i\
         $major.$minor.$patch ($(date +"%m-%d-%Y"))\n~~~~~~~~~~~~~~~~~~\n\n" $historyFile
     sed -i "7i\
@@ -106,12 +103,4 @@ else
 fi
 sudo pip3 uninstall -y Reef_Vision
 
-sudo pip3 install Reef-Vision==$major.$minor.$patch
-if [ $? -eq 0 ]; then
-    echo Release Succesful
-    echo Released version $major.$minor.$patch | ./gitpush.sh
-else
-    echo Release Failed
-fi
-sudo pip3 uninstall -y Reef_Vision
-
+echo Please verify verion release by running sudo pip3 install Reef-Vision==$major.$minor.$patch
