@@ -21,7 +21,7 @@ In order to update your **reef** you will first need to connect it to the intern
 
 Then go ahead and disconnect the ethernet from the **Reef** and connect your computer to the same wifi the **Reef** is now connected to. You should now be able to check for an update and then follow the prompts to update your **Reef**. If you got disconnected in the process use the same URL again to get back into the **Reef** *[Reef-Name].local:5801/*.
 
-## **Your All Set!**
+## **You're All Set!**
 Your own personal **Reef** is fully set up and has all the tools you need to start adding AI and low latency video to your FRC robot.
 
 ## **Whats Next?**
