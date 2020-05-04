@@ -16,17 +16,22 @@ https://pypi.org/project/Orange_Vision/
 
 
 
-
 ### run server
 
 `reef_detect_server`
 
 
+### local development
+
+`python3 -m Reef_Vision.detect_server`
 
 ### run with inference
 
 `reef_detect_server --enable_ai`
 
+### local development
+
+`python3 -m Reef_Vision.detect_server --enable_ai`
 
 ### enable .local
 
