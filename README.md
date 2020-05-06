@@ -1,4 +1,4 @@
-# Reef_Vision lul
+# Reef_Vision
 FRC Reef Vision package
 
 https://pypi.org/project/Orange_Vision/
