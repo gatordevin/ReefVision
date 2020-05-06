@@ -716,6 +716,10 @@ class WsProtoClient(ProtoClient):
                 os.system("sudo apt-get update && sudo apt-get dist-upgrade -y")
                 os.system("pip3 install --upgrade Reef_Vision")
                 os.system("sudo reboot now")
+
+            if request.path == '/restartServer':
+                os.system("bash /home/mendel/ReefVision/scripts/restartServer.sh")
+
             if request.path == '/checkUpdate':
 
                 try:
