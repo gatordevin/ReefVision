@@ -1,7 +1,9 @@
-from . import ggstreamer as gstreamer
+from . import gstreamerShort as gstreamer
 import threading
 import enum
 import numpy as np
+import os
+from time import sleep
 
 class CameraManager:
     def __init__(self):
@@ -31,7 +33,12 @@ class Cam:
         self.pipeline = str(GStreamerPipelines.SRC).format(device)
         self.signals = {}
         self.streams = {}
-    
+        self.pipelineStarted = False
+        self.device = device
+        
+        
+        
+
     def on_buffer(self, data, streamName):
         self.streams[streamName].newData(data)
         
@@ -59,12 +66,35 @@ class Cam:
         self.streams.clear()
         self.signals.clear()
         
+    def cameraWatchdog(self):
+        while True:
+            if os.path.exists(f'/dev/video{str(self.device)}'):
+                if(self.pipelineStarted):
+                    pass
+                else:
+                    sleep(1)
+                    self.runGStreamerPipeline()
+            else:
+                if(self.pipelineStarted):
+                    self.stopGStreamerPipeline()
+
     def startPipeline(self):
-        self.thread = threading.Thread(target=gstreamer.run_pipeline,args=(self.pipeline,self.on_buffer,self.signals))
+        self.thread = threading.Thread(target=self.cameraWatchdog)
         self.thread.start()
-    
+
+    def runGStreamerPipeline(self):
+        self.thread1 = threading.Thread(target=gstreamer.run_pipeline,args=(self.pipeline,self.on_buffer,self.signals))
+        self.thread1.start()
+        self.pipelineStarted = True
+
+    def stopGStreamerPipeline(self):
+        self.thread1 = threading.Thread(target=gstreamer.run_pipeline,args=(self.pipeline,self.on_buffer,self.signals))
+        self.thread1.start()
+        self.pipelineStarted = False
+
     def stopPipeline(self):
         gstreamer.quit()
+        self.thread1.join()
         self.thread.join()
 
     def __bytes__(self):

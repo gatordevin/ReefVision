@@ -1,3 +1,5 @@
+sudo apt-get install build-essential libssl-dev libffi-dev python-dev python3-dev
+pip3 install twine
 file="./Reef_Vision/__init__.py"
 line=$(sed -n '2p' < $file)
 version=$(grep -o "'.*'" $file | sed "s/'//g")
@@ -85,11 +87,20 @@ while true; do
     fi
 done
 
-sed -i "4i\
-    $major.$minor.$patch ($(date +"%m-%d-%Y"))\n~~~~~~~~~~~~~~~~~~\n\n" $historyFile
-sed -i "7i\
-    ${totalchanges}\n" $historyFile
-#python3 setup.py bdist sdist 
+python3 setup.py sdist bdist_wheel
+sudo pip3 install "dist/Reef_Vision-$major.$minor.$patch.tar.gz"
+sudo killserver.sh
+sudo stopautoboot.sh
+if [ $? -eq 0 ]; then
+    echo Build Success. Now Releasing Version $major.$minor.$patch
+    echo "ReefVision" | python3 -m twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
+    sed -i "4i\
+        $major.$minor.$patch ($(date +"%m-%d-%Y"))\n~~~~~~~~~~~~~~~~~~\n\n" $historyFile
+    sed -i "7i\
+        ${totalchanges}\n" $historyFile
+else
+    echo Build of version $major.$minor.$patch failed
+fi
+sudo pip3 uninstall -y Reef_Vision
 
-#python3 setup.py sdist upload
-
+echo Please verify verion release by running sudo pip3 install Reef-Vision==$major.$minor.$patch
