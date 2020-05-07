@@ -18,3 +18,5 @@ class Settings:
             data = json.load(f)
         camID = int(data[cam]["device"])
         return camID
+
+# hey use the function in helpers/read_write_json.py read json function
