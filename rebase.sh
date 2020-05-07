@@ -1,4 +1,4 @@
-git checkout dev
+git checkout master
 git remote add upstream https://github.com/ReefVision/ReefVision.git
 git fetch upstream
 git rebase upstream/dev
