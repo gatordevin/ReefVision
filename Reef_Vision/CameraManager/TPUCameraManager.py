@@ -34,8 +34,9 @@ class Cam:
         self.signals = {}
         self.streams = {}
         self.pipelineStarted = False
-        self.thread = threading.Thread(target=self.cameraWatchdog)
-        self.thread.start()
+        self.device = device
+        
+        
         
 
     def on_buffer(self, data, streamName):
@@ -66,27 +67,36 @@ class Cam:
         self.signals.clear()
         
     def cameraWatchdog(self):
-        i=0
         while True:
-            if os.path.exists('/dev/video1'):
+            if os.path.exists('/dev/video'+str(self.device)):
                 if(self.pipelineStarted):
                     pass
                 else:
-                    sleep(2)
-                    self.startPipeline()
+                    sleep(1)
+                    self.runGStreamerPipeline()
             else:
                 if(self.pipelineStarted):
-                    self.stopPipeline()
+                    self.stopGStreamerPipeline()
 
     def startPipeline(self):
+        self.thread = threading.Thread(target=self.cameraWatchdog)
+        self.thread.start()
+
+    def runGStreamerPipeline(self):
         self.thread1 = threading.Thread(target=gstreamer.run_pipeline,args=(self.pipeline,self.on_buffer,self.signals))
         self.thread1.start()
         self.pipelineStarted = True
 
+    def stopGStreamerPipeline(self):
+        self.thread1 = threading.Thread(target=gstreamer.run_pipeline,args=(self.pipeline,self.on_buffer,self.signals))
+        self.thread1.start()
+        self.pipelineStarted = False
+
     def stopPipeline(self):
         gstreamer.quit()
         self.thread1.join()
-        self.pipelineStarted = False
+        self.thread.join()
+
     def __bytes__(self):
         self.newdata = False
         return self.data
