@@ -68,7 +68,7 @@ class Cam:
         
     def cameraWatchdog(self):
         while True:
-            if os.path.exists('/dev/video'+str(self.device)):
+            if os.path.exists(f'/dev/video{str(self.device)}'):
                 if(self.pipelineStarted):
                     pass
                 else:
