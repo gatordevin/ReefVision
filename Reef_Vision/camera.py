@@ -39,12 +39,12 @@ class Camera:
 
         self.CSICam.startPipeline() 
 
-        if os.path.exists('/dev/video1'):
-            self.USBCam = self.camMan.newCam(1) #Creates new RGB CSI-camera
-            self.SB = self.USBCam.addPipeline(GStreamerPipelines.H264,(640,480),30,"usb_cam") #Creates an RGB stream at 30 fps and 640x480 for openCV
-            self.USBCam.startPipeline()
-        else:
-            self.USBCam = None
+        # if os.path.exists('/dev/video1'):
+        self.USBCam = self.camMan.newCam(1) #Creates new RGB CSI-camera
+        self.SB = self.USBCam.addPipeline(GStreamerPipelines.H264,(640,480),30,"usb_cam") #Creates an RGB stream at 30 fps and 640x480 for openCV
+        self.USBCam.startPipeline()
+        # else:
+        #     self.USBCam = None
 
 
        
