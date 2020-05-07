@@ -291,6 +291,11 @@
                             top: 0px;
                             z-index: 20;
                             height: 100%;
+                
+                            
+                        }
+                        #entries {
+
                         }
                         tspan { 
                             font-family: 'Roboto Mono', monospace;
@@ -328,11 +333,25 @@
     tabContent.addClass('hello').addClass('is-active').siblings('[data-content]').removeClass('is-active')
    
 })
+$.getJSON('/json/boxToggle.json', function (data) {
+    var boxes = document.getElementById('one')
+    var ui = document.getElementById('entries')
 
+    switch(data) {
+        case "on":
+            boxes.style.visibility = "visible"
+            ui.style.visibility = "visible"
+            break;
+        case "off":
+            boxes.style.visibility = "hidden"
+            ui.style.visibility = "hidden"
+            break;
+} 
+        });
 
 
 function updateDropdown() {
-        console.log("uopdate")
+        console.log("update")
 
        
         $.getJSON('/json/profiles.json', function (data) {

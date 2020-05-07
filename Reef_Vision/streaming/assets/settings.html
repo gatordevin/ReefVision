@@ -221,29 +221,68 @@
 
 
 
-                <!-- Chosen select -->
-                <div class="flat-card is-auto is-element-details">
-                  <div class="columns  is-vcentered">
-
-                    <div class="column is-component">
+                <div class="columns">
+                  <div class="column "></div>
+                  <div class="column column is-two-fifths">
 
 
 
 
+                    <div class="flat-card">
+                      <div id="account-main-placeholder" class="main-placeholder">
+                        <div class="placeholder-content">
+                      
+                          <h3 id="version">A new Update may be available</h3>
+                          <p class="text-wrap"> Press the button below to check for Updates</p>
+                          <div id="notifications" class="button-wrap notifications">
+                            
 
 
+                            <div id="boxesDropdown" class="dropdown">
+                              <div id="enable-boxes" class="dropdown-trigger">
+                                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                                  <span>Enable Boxes</span>
+                                  <span class="icon is-small">
+                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                  </span>
+                                </button>
+                              </div>
+                              <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                                <div class="dropdown-content">
+                                  <a onclick="toggleBoxes('on')" href="#" class="dropdown-item">
+                                    On
+                                  </a>
+                                  <a  onclick="toggleBoxes('off')" class="dropdown-item">
+                                    Off
+                                  </a>
+                                 
+                                </div>
+                              </div>
+                            </div>
+
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+
+                            <a href="#"  onclick="restartServer()" class="button big-button notifications-button rounded raised">
+                             
+                             
+                              <span class="icon">
+                                <svg class="svg-inline--fa fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="power-off" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-power-off fa-w-16 fa-5x"><path fill="currentColor" d="M400 54.1c63 45 104 118.6 104 201.9 0 136.8-110.8 247.7-247.5 248C120 504.3 8.2 393 8 256.4 7.9 173.1 48.9 99.3 111.8 54.2c11.7-8.3 28-4.8 35 7.7L162.6 90c5.9 10.5 3.1 23.8-6.6 31-41.5 30.8-68 79.6-68 134.9-.1 92.3 74.5 168.1 168 168.1 91.6 0 168.6-74.2 168-169.1-.3-51.8-24.7-101.8-68.1-134-9.7-7.2-12.4-20.5-6.5-30.9l15.8-28.1c7-12.4 23.2-16.1 34.8-7.8zM296 264V24c0-13.3-10.7-24-24-24h-32c-13.3 0-24 10.7-24 24v240c0 13.3 10.7 24 24 24h32c13.3 0 24-10.7 24-24z" class=""></path></svg>
+ 
+                              </span>
+                                 &nbsp;&nbsp; Restart
+                                  </a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="column is-component">
-
-                      <div id="container4"></div>
-
-
-
-
-                    </div>
-
 
                   </div>
+                  <div class="column "></div>
                 </div>
 
 
@@ -450,18 +489,33 @@
 
   //   });
   
-  function test() {
-    $.ajax({
-      type: 'POST',
-      url: "/yeet",
-      contentType: 'application/json;charset=UTF-8',
-      data: JSON.stringify({ "hello": "test" }),
-      success: function (data) {
-        console.log(data, "success")
-      }
 
-    });
-  }
+  function toggleBoxes(toggle){
+      
+
+    $.ajax({
+        type: 'POST',
+        url: "/toggleBoxes",
+        beforeSend: function (request) {
+        request.setRequestHeader("Authority", toggle);
+         },
+        contentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify("test"),
+        });
+
+    }
+
+
+  function restartServer(){
+        $.ajax({
+        type: 'POST',
+        url: "/restartServer",
+        contentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify("test"),
+        });
+
+    }
+    
   function refreshConnections() {
     console.log("refresh connections")
     document.getElementById("refresh").classList.add('is-loading');
@@ -561,6 +615,14 @@
     var element = document.getElementById("myDropdown");
     button.addEventListener('click', () => {
       element.classList.toggle('is-active');
+    });
+
+  // fix this later
+
+  var box_button = document.getElementById("enable-boxes");
+    var box_element = document.getElementById("boxesDropdown");
+    box_button.addEventListener('click', () => {
+      box_element.classList.toggle('is-active');
     });
 
 

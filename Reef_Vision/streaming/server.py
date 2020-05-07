@@ -720,6 +720,15 @@ class WsProtoClient(ProtoClient):
             if request.path == '/restartServer':
                 os.system("bash /home/mendel/ReefVision/scripts/restartServer.sh")
 
+
+            if request.path == '/toggleBoxes':
+                data = request.headers['Authority']
+                if data == "on":
+                    write_json('boxToggle', data)
+                elif data == "off":
+                    write_json('boxToggle', data)
+
+            
             if request.path == '/checkUpdate':
 
                 try:
