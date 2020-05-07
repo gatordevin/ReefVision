@@ -1,0 +1,7 @@
+{
+    "USB": {
+        "resolution": [640,480],
+        "fps": 30,
+        "device": 0
+    }
+}
